@@ -5,4 +5,4 @@ import AppButton from './AppButton';
 import AppSearch from './AppSearch';
 import AppChip from './AppChip';
 
-export { AppBodyText, AppBoldText, AppButton, AppSearch, AppChip };
+export default { AppBodyText, AppBoldText, AppButton, AppSearch, AppChip };
