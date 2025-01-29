@@ -1,14 +1,14 @@
-import { StyleSheet, ViewStyle,TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
-import { COLORS, SIZES } from '../modules/main/src/mainConstants';
+import { COLORS, SIZES } from '../modules/main/src/constants';
 
 interface AppSearchProps {
     inputString?: string;
     onChangeText?: (text: string) => void;
     onFocus?: () => void;
     onCancel?: () => void;
-    style?: ViewStyle;
+    style?: any
 }
 
 const AppSearch = (props: AppSearchProps) => {
