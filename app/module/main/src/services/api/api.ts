@@ -47,5 +47,5 @@ export class Api {
 
 }
 
-// Singleton instance of the API for convenience
+// Singleton instance of the API 
 export const api = new Api();
