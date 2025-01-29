@@ -1,8 +1,9 @@
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import React from 'react';
-import { store, persistor } from './modules/main/src/configureStore';
+
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
+import { store ,persistor} from './app/modules/main/src/configureStore';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -15,9 +16,9 @@ export default function App() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
-                <View>
+                <SafeAreaView>
                     <Text>App</Text>
-                </View>
+                </SafeAreaView>
             </PersistGate>
         </Provider>
     );
