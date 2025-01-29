@@ -8,7 +8,7 @@
 import { ApisauceInstance, create } from "apisauce";
 import type { ApiConfig } from "./api.types";
 // import { getAuthToken } from "@/modules/auth/authSelectors";
-import Config from "@/app/module/config";
+import Config from "@/app/modules/config";
 
 /**
  * Configuring the apisauce instance.
