@@ -4,11 +4,11 @@ import { Button } from 'react-native-paper';
 import { COLORS } from '../modules/main/src/constants';
 
 interface AppButtonProps extends PressableProps {
-    style?: ViewStyle;
-    oPress?: () => void;
-    loading?: boolean;
+    style: ViewStyle;
+    oPress: () => void;
+    loading: boolean;
     label: string;
-    icon?: string;
+    icon: string;
 }
 
 const AppButton = (props: AppButtonProps) => {

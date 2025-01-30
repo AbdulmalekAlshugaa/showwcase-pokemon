@@ -4,13 +4,13 @@ import { Chip } from 'react-native-paper';
 
 interface AppChipProps {
     name: string;
-    icon?: string;
+    icon: string;
     selected: boolean;
 
-    style?: ViewStyle;
-    onPress?: () => void;
-    selectedColor?: string;
-    showSelectedOverlay?: boolean;
+    style: ViewStyle;
+    onPress: () => void;
+    selectedColor: string;
+    showSelectedOverlay: boolean;
 }
 
 const AppChip = (props: AppChipProps) => {

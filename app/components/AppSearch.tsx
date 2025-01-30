@@ -4,11 +4,11 @@ import { Searchbar } from 'react-native-paper';
 import { COLORS, SIZES } from '../modules/main/src/constants';
 
 interface AppSearchProps {
-    inputString?: string;
-    onChangeText?: (text: string) => void;
-    onFocus?: () => void;
-    onCancel?: () => void;
-    style?: StyleProp<TextStyle & ViewStyle>;
+    inputString: string;
+    onChangeText: (text: string) => void;
+    onFocus: () => void;
+    onCancel: () => void;
+    style: StyleProp<TextStyle & ViewStyle>;
 }
 
 const AppSearch = (props: AppSearchProps) => {

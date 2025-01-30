@@ -5,9 +5,9 @@ import { VariantProp } from 'react-native-paper/lib/typescript/components/Typogr
 
 interface AppBoldTextProps extends React.ComponentProps<typeof Text> {
     title: string;
-    style?: StyleProp<TextStyle>; 
-    variant?: VariantProp<string>;
-    numberOfLines?: number;
+    style: StyleProp<TextStyle>; 
+    variant: VariantProp<string>;
+    numberOfLines: number;
 }
 
 const AppBodyText = (props: AppBoldTextProps) => {
