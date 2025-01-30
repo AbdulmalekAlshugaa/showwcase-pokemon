@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { BackHandler, Linking, Platform } from "react-native";
+import {  useEffect, useRef } from "react";
+import { BackHandler, Platform } from "react-native";
 import {
   NavigationState,
   PartialState,

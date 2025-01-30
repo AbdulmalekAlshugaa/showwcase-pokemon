@@ -23,6 +23,7 @@ import React from 'react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store ,persistor} from './app/modules/main/src/configureStore';
+import RootNavigator from './app/modules/navigation/RootNavigator';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -35,9 +36,7 @@ export default function App() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
-                <SafeAreaView>
-                    <Text>App</Text>
-                </SafeAreaView>
+                <RootNavigator />
             </PersistGate>
         </Provider>
     );

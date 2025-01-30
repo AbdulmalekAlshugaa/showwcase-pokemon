@@ -3,11 +3,11 @@ import AuthLoginScreen from "../view/authLoginScreen";
 import { AuthRoutes } from "./authRoutes";
 
 export const AuthFlowStack = createDefaultStackNavigator(
-    "auth",
-	{
-		[AuthRoutes.AuthLogin]: { screen: AuthLoginScreen },
-	},
-	{
-		initialRouteName: AuthRoutes.AuthLogin,
-	},
+    "auth", // pod name for scalability
+    {
+        [AuthRoutes.AuthLogin]: AuthLoginScreen, // Fix: Use the component directly
+    },
+    {
+        initialRouteName: AuthRoutes.AuthLogin,
+    }
 );

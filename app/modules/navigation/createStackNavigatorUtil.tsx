@@ -3,8 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { COLORS } from '../main/src/constants';
 
-;
-
 export type NavigatorConfig = {
     headerMode?: 'float' | 'screen';
     initialRouteName?: string;
@@ -22,7 +20,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
         headerMode: defaultHeaderMode,
     };
 
-    return function createMLStackNavigator(
+    return function createPokeMonStackNavigator(
         pod: Pod,
         routeConfig: Record<string, any>,
         navigatorConfig: NavigatorConfig = defaultNavigatorConfig

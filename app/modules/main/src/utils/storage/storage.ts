@@ -1,5 +1,4 @@
-import { MMKV } from 'react-native-mmkv';
-export const storage = new MMKV();
+
 
 /**
  * Loads a string from storage.
@@ -8,7 +7,7 @@ export const storage = new MMKV();
  */
 export function loadString(key: string): string | null {
     try {
-        return storage.getString(key) ?? null;
+        return "load key "
     } catch {
         // not sure why this would fail... even reading the RN docs I'm unclear
         return null;
@@ -23,7 +22,7 @@ export function loadString(key: string): string | null {
  */
 export function saveString(key: string, value: string): boolean {
     try {
-        storage.set(key, value);
+        // not sure why this would fail... even reading the RN docs I'm unclear
         return true;
     } catch {
         return false;
@@ -67,7 +66,7 @@ export function save(key: string, value: unknown): boolean {
  */
 export function remove(key: string): void {
     try {
-        storage.delete(key);
+     // not sure why this would fail... even reading the RN docs I'm unclear
     } catch {}
 }
 
@@ -76,6 +75,6 @@ export function remove(key: string): void {
  */
 export function clear(): void {
     try {
-        storage.clearAll();
+       // not sure why this would fail... even reading the RN docs I'm unclear
     } catch {}
 }
