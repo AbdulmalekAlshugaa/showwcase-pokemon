@@ -56,13 +56,14 @@ export const initI18n = async () => {
 /**
  * Builds up valid keypaths for translations.
  */
+// via: https://stackoverflow.com/a/65333050
+type RecursiveKeyOf<TObj extends object> = {
+  [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, true>;
+}[keyof TObj & (string | number)];
 
 export type TxKeyPath = RecursiveKeyOf<Translations>;
 
-// via: https://stackoverflow.com/a/65333050
-type RecursiveKeyOf<TObj extends object> = {
-    [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, true>;
-}[keyof TObj & (string | number)];
+
 
 type RecursiveKeyOfInner<TObj extends object> = {
     [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, false>;
