@@ -1,4 +1,4 @@
-export const useDebounce = <T extends (...args: any[]) => void>(
+ const useDebounce = <T extends (...args: any[]) => void>(
     func: T,
     milliseconds: number
   ) => {
@@ -13,4 +13,6 @@ export const useDebounce = <T extends (...args: any[]) => void>(
       timer = setTimeout(func, time, ...args);
     };
   };
+
+export default useDebounce;
   
