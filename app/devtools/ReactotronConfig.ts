@@ -6,13 +6,12 @@
 import { Platform, NativeModules } from 'react-native';
 
 import { ArgType } from 'reactotron-core-client';
-import mmkvPlugin from 'reactotron-react-native-mmkv';
 
 // import { goBack, resetRoot, navigate } from "@/navigators/navigationUtilities";
 
 import { Reactotron } from './ReactotronClient';
 import { ReactotronReactNative } from 'reactotron-react-native';
-import { storage, clear } from '../modules/main/src/utils/storage';
+import { clear } from '../modules/main/src/utils/storage';
 
 const reactotron = Reactotron.configure({
     name: require('../../package.json').name,
@@ -24,7 +23,7 @@ const reactotron = Reactotron.configure({
 
 // add the react native plugin
 
-reactotron.use(mmkvPlugin<ReactotronReactNative>({ storage }));
+
 
 if (Platform.OS !== 'web') {
     reactotron.useReactNative({
