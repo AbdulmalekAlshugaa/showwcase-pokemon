@@ -1,11 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { StyleProp, StyleSheet, TextStyle } from 'react-native';
 import React from 'react';
 import { Text } from 'react-native-paper';
 import { VariantProp } from 'react-native-paper/lib/typescript/components/Typography/types';
 
 interface AppBoldTextProps {
     title: string;
-    style?: any;
+    style?: StyleProp<TextStyle>; 
     variant?: VariantProp<string>;
     numberOfLines?: number;
 }
