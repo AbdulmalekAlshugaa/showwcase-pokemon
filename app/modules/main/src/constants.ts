@@ -1,4 +1,3 @@
-
 import { Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -75,9 +74,8 @@ export const POKEMON_TYPE_COLORS = {
     dragon: '#7038F8',
     dark: '#705848',
     fairy: '#EE99AC',
-  } as const;
+} as const;
 
 const appTheme = { COLORS, SIZES, TYPOGRAPHY, POKEMON_TYPE_COLORS };
 
 export default appTheme;
-

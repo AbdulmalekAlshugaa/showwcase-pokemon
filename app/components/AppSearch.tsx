@@ -8,7 +8,7 @@ interface AppSearchProps {
     onChangeText?: (text: string) => void;
     onFocus?: () => void;
     onCancel?: () => void;
-    style?: any
+    style?: any;
 }
 
 const AppSearch = (props: AppSearchProps) => {
@@ -29,7 +29,6 @@ const AppSearch = (props: AppSearchProps) => {
     };
 
     return (
-       
         <Searchbar
             onPressIn={() => inputRef.focus()}
             value={inputString}
