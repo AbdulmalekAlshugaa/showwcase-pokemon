@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import React from 'react';
 
 import { PersistGate } from 'redux-persist/integration/react';
