@@ -46,7 +46,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
                             gestureEnabled: Platform.OS === 'ios',
                         }}
                     >
-                        {Object.entries(routeConfig).map(([name, component]) => (
+                        {Object.entries(routeConfig)?.map(([name, component]) => (
                             <Stack.Screen key={name} name={name} component={component} />
                         ))}
                     </Stack.Navigator>

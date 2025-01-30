@@ -1,7 +1,4 @@
 export const PokemonRoute = Object.freeze({
-	PokemonList: 'PokemonsListScreen',
+    PokemonList: 'PokemonsListScreen',
     PokemonDetails: 'PokemonsDetailsScreen',
-    
-
-	
 });
