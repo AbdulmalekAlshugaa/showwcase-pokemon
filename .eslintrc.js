@@ -35,10 +35,13 @@ module.exports = {
         // // Reactotron
         // 'reactotron/no-tron-in-production': 'error',
         // // Standard Config Overrides
-        // 'comma-dangle': 'off',
-        // 'no-global-assign': 'off',
-        // quotes: 'off',
-        // 'space-before-function-paren': 'off',
+        'comma-dangle': 'off',
+        'no-global-assign': 'off',
+        quotes: 'off',
+        'space-before-function-paren': 'off',
+
+    // Optionally disable the node rule if you see it affecting `require()`
+    'node/no-missing-require': 'off',
     },
     ignorePatterns: ['/dist/*'],
 };
