@@ -11,7 +11,7 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage: AsyncStorage,
-    // whitelist: ['auth'], // only auth will be persisted
+    whitelist: ['auth'], // only auth will be persisted
 };
 
 const persistedReducer = persistReducer(persistConfig, GlobalReducer);
