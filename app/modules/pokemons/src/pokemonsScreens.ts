@@ -1,13 +1,12 @@
 import { createDefaultStackNavigator } from "../../navigation/createStackNavigatorUtil";
-import PokemonsHomeScreen from "../view/PokemonsHomeScreen";
+import { PokemonsDetailsScree, PokemonsHomeScreen } from "../view";
 import { PokemonRoute } from "./pokemonsRoute";
 
 
 export const MainAppFlowStack = createDefaultStackNavigator(
-   "main", // pod name for scalability
     {
         [PokemonRoute.PokemonList]: PokemonsHomeScreen, 
-        [PokemonRoute.PokemonDetails]: PokemonsHomeScreen,
+        [PokemonRoute.PokemonDetails]: PokemonsDetailsScree,
     },
     {
         initialRouteName: PokemonRoute.PokemonList,
