@@ -1,5 +1,4 @@
 import capitalizeFirstLetter from './capitalizeFirstLetter';
-import getPokemonIdByUrl from './getPokemonIdByUrl';
 import getPokemonImage from './getPokemonImageById';
 
 const castPokemonDataInEspecialFormate = ( pokemonData: any, pokemonSpecieData: any) => {

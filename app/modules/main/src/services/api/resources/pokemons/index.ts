@@ -9,10 +9,8 @@ export class PokemonApi extends ResourceApi {
 
     async pokemons(offset:number, limit: number) {
         const response = await this.api.apisauce.get<BasicResponse<PokemonApiResult>>('/pokemon', {
-          params: {
-            offset: offset || 0,
-            limit: limit || 20,
-          },
+            offset,
+            limit
         });
         return this.api.transformResponse(response);
     }
