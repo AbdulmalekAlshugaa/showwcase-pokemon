@@ -8,13 +8,13 @@ const persistConfig = {
     key: 'root',
     version: 1,
     storage: AsyncStorage,
-    whitelist: ['auth'], // only auth will be persisted
+    whitelist: ['auth'], // Only auth will be persisted
 };
 
 const persistedReducer = persistReducer(persistConfig, GlobalReducer);
 
 export const store = configureStore({
-    reducer: persistedReducer,
+    reducer: persistedReducer, // ✅ Correct usage
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: {

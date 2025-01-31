@@ -48,3 +48,14 @@ export interface ApiConfig {
      */
     timeout: number;
 }
+
+/**
+ * Basic API response
+ */
+export interface BasicResponse<T = any> {
+    /**
+     * Data of the response
+     */
+    data: T;
+    message?: string;
+  }

@@ -1,12 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from 'react-native-paper'
 import { navigateTo, resetRoot } from '../../navigation/navigationUtil'
 import { useAppDispatch } from '../../main/src/configureStore'
 import { logout } from '../../auth/src/authReducer'
+import { getPokemonsThunk } from '../src/pokemonsThunks'
+
 
 const PokemonsHomeScreen = () => {
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        console.log('PokemonsHomeScreen');
+        dispatch(getPokemonsThunk());
+    }, []);
     const handleNavigation = () => {
         dispatch(logout());
     }
