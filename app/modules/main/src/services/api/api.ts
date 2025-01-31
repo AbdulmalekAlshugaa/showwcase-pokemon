@@ -5,9 +5,10 @@
  * See the [Backend API Integration](https://docs.infinite.red/ignite-cli/boilerplate/app/services/#backend-api-integration)
  * documentation for more details.
  */
-import { ApisauceInstance, create } from 'apisauce';
-import type { ApiConfig } from './api.types';
+import { ApiResponse, ApisauceInstance, create } from 'apisauce';
+import type { ApiConfig, BasicResponse } from './api.types';
 import Config from '@/app/modules/config';
+import { getGeneralApiProblem } from './apiProblem';
 // import { getAuthToken } from "@/modules/auth/authSelectors";
 
 /**
@@ -44,6 +45,27 @@ export class Api {
             },
         });
     }
+
+    transformResponse<T = unknown>(response: ApiResponse<BasicResponse<T>>) {
+        // the typical ways to die when calling an api
+        if (!response.ok) {
+          const problem = getGeneralApiProblem(response);
+          if (problem) return problem;
+        }
+    
+        // transform the data into the format we are expecting
+        try {
+          const rawData = response.data;
+          // This is where we transform the data into the shape we expect for our reducers
+          return { kind: 'ok', data: rawData };
+        } catch (e) {
+          if (__DEV__) {
+            const error = e as Error;
+            console.tron.error(`Bad data: ${error.message}\n${response.data}`, error.stack);
+          }
+          return { kind: 'bad-data' };
+        }
+      }
 }
 
 // Singleton instance of the API

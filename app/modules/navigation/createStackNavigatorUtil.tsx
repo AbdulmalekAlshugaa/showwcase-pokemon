@@ -8,7 +8,6 @@ export type NavigatorConfig = {
     initialRouteName?: string;
 };
 
-export type Pod = 'auth' | 'main';
 const isStaging = false; // TODO: Implement this function
 
 export const DEFAULT_STACK_NAVIGATOR_HEADER_MODE: NavigatorConfig['headerMode'] = isStaging
@@ -21,7 +20,6 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
     };
 
     return function createPokeMonStackNavigator(
-        pod: Pod,
         routeConfig: Record<string, any>,
         navigatorConfig: NavigatorConfig = defaultNavigatorConfig
     ) {
@@ -31,7 +29,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
             return (
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={navigatorConfig.initialRouteName}
+                        {...navigatorConfig}
                         screenOptions={{
                             headerShown: true,
                             headerStyle: {
@@ -44,9 +42,13 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
                                 backgroundColor: COLORS.white,
                             },
                             gestureEnabled: Platform.OS === 'ios',
-                        }}
+                            
+                            
+                        }
+                        
+                    }
                     >
-                        {Object.entries(routeConfig).map(([name, component]) => (
+                        {Object.entries(routeConfig)?.map(([name, component]) => (
                             <Stack.Screen key={name} name={name} component={component} />
                         ))}
                     </Stack.Navigator>
