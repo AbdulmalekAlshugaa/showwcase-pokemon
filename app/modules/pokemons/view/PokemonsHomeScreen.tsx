@@ -4,13 +4,15 @@ import { navigateTo } from '../../navigation/navigationUtil';
 import PokemonsCard from './PokemonsCard';
 import AppLoading from '@/app/components/AppLoading';
 import { useGetPaginatedPokemons } from '../hooks';
+import { useNavigation } from '@react-navigation/native';
 
 const PokemonsHomeScreen = () => {
-    const { allPokemons, isSuccess, isFetching, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
+   const navigation =  useNavigation();
+    const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
 
     const ListFooterComponent = useMemo(
-        () => (isFetching ? <AppLoading color={'primary'} style={{ marginVertical: 8 }} /> : null),
-        [isFetching],
+        () => (isLoading ? <AppLoading color={'primary'} style={{ marginVertical: 8 }} /> : null),
+        [isLoading],
     );
 
     return (
@@ -24,10 +26,10 @@ const PokemonsHomeScreen = () => {
                             name={item.name}
                             image={item.image}
                             types={item.types}
-                            onPress={() => navigateTo('PokemonsDetailsScreen', { url: item.url })}
+                            onPress={() => navigateTo('PokemonsDetailsScreen', { item: item })}
                         />
                     )}
-                    keyExtractor={(item) => `${item.id}-${item.name}`}
+                    keyExtractor={item => item.id}
                     onEndReached={loadMorePokemons}
                     onEndReachedThreshold={0.5}
                     numColumns={2}

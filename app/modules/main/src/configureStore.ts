@@ -4,7 +4,6 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GlobalReducer from './GlobalReducer';
 import { pokemonApi } from '../../pokemons/hooks/useGetPokemonsQuery';
-import { pokemonDetailsApi, pokemonSpeciesApi } from '../../pokemons/hooks';
 
 const persistConfig = {
     key: 'root',
@@ -22,7 +21,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(pokemonApi.middleware, pokemonDetailsApi.middleware, pokemonSpeciesApi.middleware), // ✅ Add RTK Query middleware
+        }).concat(pokemonApi.middleware), // ✅ Add RTK Query middleware
 });
 
 export const persistor = persistStore(store);

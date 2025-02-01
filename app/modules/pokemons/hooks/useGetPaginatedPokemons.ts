@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useGetPokemonsQuery } from './useGetPokemonsQuery';
 import getPokemonIdByUrl from '../../main/src/utils/getPokemonIdByUrl';
 import castPokemonDataInEspecialFormate from '../../main/src/utils/getPokemonData';
@@ -7,66 +7,73 @@ import useDebounce from '../../main/hooks/useDebounce';
 
 const useGetPaginatedPokemons = () => {
     const [offset, setOffset] = useState(0);
-    const limit = 20;
+    const limit = 10;
     const [allPokemons, setAllPokemons] = useState<any[]>([]);
+    const [isFullLoading, setIsFullLoading] = useState<boolean>(false); // New state for full loading tracking
 
-    const { data, isFetching, isSuccess, isLoading } = useGetPokemonsQuery({ offset, limit });
+    const { data, isFetching, isSuccess } = useGetPokemonsQuery({ offset, limit });
 
+    // Fetch the Pokemon details when data changes
     useEffect(() => {
         if (isSuccess && data?.results) {
             const fetchPokemonDetails = async () => {
-                const pokemonsList = await Promise.all(
-                    data.results.map(async pokemon => {
-                        try {
-                            const id = getPokemonIdByUrl(pokemon.url);
+                setIsFullLoading(true); // Set loading to true when the data fetching starts
+                const pokemonsList = [];
 
-                            // Dispatch RTK Query fetches manually
-                            const [pokemonData, pokemonSpeciesData] = await Promise.all([
-                                pokeapi.pokemonById(id),
-                                pokeapi.pokemonSpecies(id),
-                            ]);
+                for (let pokemon of data.results) {
+                    try {
+                        const id = getPokemonIdByUrl(pokemon.url);
+                        const [pokemonData, pokemonSpeciesData] = await Promise.all([
+                            pokeapi.pokemonById(id),
+                            pokeapi.pokemonSpecies(id)
+                        ]);
 
-                            const pokemonDetails = pokemonData.kind === 'ok' ? pokemonData.data : null;
-                            const pokemonSpeciesDetails =
-                                pokemonSpeciesData.kind === 'ok' ? pokemonSpeciesData.data : null;
+                        const pokemonDetails = pokemonData.kind === 'ok' ? pokemonData.data : null;
+                        const pokemonSpeciesDetails = pokemonSpeciesData.kind === 'ok' ? pokemonSpeciesData.data : null;
 
-                            return castPokemonDataInEspecialFormate(pokemonDetails, pokemonSpeciesDetails);
-                        } catch (error) {
-                            console.error(`Failed to fetch Pokémon ${pokemon.url}`, error);
-                            return null;
+                        const formattedPokemon = castPokemonDataInEspecialFormate(pokemonDetails, pokemonSpeciesDetails);
+                        if (formattedPokemon) {
+                            pokemonsList.push(formattedPokemon);
                         }
-                    }),
-                );
+                    } catch (error) {
+                        console.error(`Failed to fetch Pokémon ${pokemon.url}`, error);
+                    }
+                }
 
+                // Update state with the new list and avoid duplicates
                 setAllPokemons(prevAllPokemons => {
                     const uniquePokemons = [
                         ...prevAllPokemons, // Spread previous state
                         ...pokemonsList.filter(Boolean), // Add new data
                     ];
-    
-                    // Filter out duplicates by id
+
                     return uniquePokemons.filter(
-                        (pokemon, index, self) => 
-                            index === self.findIndex(p => p.id === pokemon.id)
+                        (pokemon, index, self) => index === self.findIndex(p => p.id === pokemon.id)
                     );
                 });
-            
+
+                setIsFullLoading(false); // Set loading to false after fetching is complete
             };
 
             fetchPokemonDetails();
         }
     }, [data, isSuccess]);
 
+    // Debounced function to load more when user scrolls
     const loadMorePokemons = useCallback(() => {
         if (!isFetching && data?.next) {
             setOffset(prev => prev + limit); // Increment offset for pagination
         }
-    }, [isFetching, data?.next]);
+    }, [isFullLoading, data?.next]);
 
-    // Debounce the loadMorePokemons function for better performance
-    const debouncedLoadMore = useDebounce(loadMorePokemons, 500);
 
-    return { allPokemons, loadMorePokemons: debouncedLoadMore, isFetching, isSuccess, isLoading };
+    return {
+        allPokemons,
+        loadMorePokemons, // Pass this function to FlatList
+        isFetching,
+        isSuccess,
+        isLoading:isFullLoading
+    };
 };
 
 export { useGetPaginatedPokemons };

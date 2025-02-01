@@ -1,7 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { COLORS } from '../main/src/constants';
+import { navigationRef } from './navigationUtil';
 
 export type NavigatorConfig = {
     headerMode?: 'float' | 'screen';
@@ -10,9 +11,7 @@ export type NavigatorConfig = {
 
 const isStaging = false; // TODO: Implement this function
 
-export const DEFAULT_STACK_NAVIGATOR_HEADER_MODE: NavigatorConfig['headerMode'] = isStaging
-    ? 'float'
-    : 'screen';
+export const DEFAULT_STACK_NAVIGATOR_HEADER_MODE: NavigatorConfig['headerMode'] = isStaging ? 'float' : 'screen';
 
 export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorConfig['headerMode']) {
     const defaultNavigatorConfig: NavigatorConfig = {
@@ -21,13 +20,13 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
 
     return function createPokeMonStackNavigator(
         routeConfig: Record<string, any>,
-        navigatorConfig: NavigatorConfig = defaultNavigatorConfig
+        navigatorConfig: NavigatorConfig = defaultNavigatorConfig,
     ) {
         const Stack = createNativeStackNavigator();
 
         return function StackNavigatorComponent() {
             return (
-                <NavigationContainer>
+                <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator
                         {...navigatorConfig}
                         screenOptions={{
@@ -42,11 +41,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
                                 backgroundColor: COLORS.white,
                             },
                             gestureEnabled: Platform.OS === 'ios',
-                            
-                            
-                        }
-                        
-                    }
+                        }}
                     >
                         {Object.entries(routeConfig)?.map(([name, component]) => (
                             <Stack.Screen key={name} name={name} component={component} />
