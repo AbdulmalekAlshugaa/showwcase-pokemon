@@ -1,50 +1,33 @@
-import { Animated, FlatList, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect, useMemo } from 'react';
-import { Button } from 'react-native-paper';
-import { navigateTo, resetRoot } from '../../navigation/navigationUtil';
-import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
-import { logout } from '../../auth/src/authReducer';
-import { getPokemonsThunk } from '../src/pokemonsThunks';
-import {
-    selectPokemonsData,
-    selectPokemonsSuccess,
-    selectPokemonsError,
-    selectPokemonsLoading,
-} from '../src/pokemoneSelectors';
+import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { navigateTo } from '../../navigation/navigationUtil';
 import PokemonsCard from './PokemonsCard';
 import AppLoading from '@/app/components/AppLoading';
+import { useGetPaginatedPokemons } from '../hooks';
 
 const PokemonsHomeScreen = () => {
-    const dispatch = useAppDispatch();
-    const pokemons = useAppSelector(selectPokemonsData);
-    const isSuccess = useAppSelector(selectPokemonsSuccess);
-    const isError = useAppSelector(selectPokemonsError);
-    const isLoading = useAppSelector(selectPokemonsLoading);
+    const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
 
-    const loadMorePokemons = () => {
-        dispatch(getPokemonsThunk(2, 20));
-    };
-
-    useEffect(() => {
-        dispatch(getPokemonsThunk(1, 20));
-    }, []);
 
     const ListFooterComponent = useMemo(
-        () => (isLoading ? <AppLoading color={'primary'} style={{ marginVertical: 8 }} /> : <></>),
+        () => (isLoading ? <AppLoading color={'primary'} style={{ marginVertical: 8 }} /> : null),
         [isLoading],
     );
+
     return (
+      <>
+      <StatusBar translucent backgroundColor={"transparent"} />
         <View>
             {isLoading && <Text>Loading...</Text>}
             {isSuccess && (
                 <FlatList
-                    data={pokemons}
+                    data={allPokemons}
                     renderItem={({ item }) => (
                         <PokemonsCard
-                            type={item.types[0].name.toLowerCase()}
                             name={item.name}
                             image={item.image}
-                            onPress={() => navigateTo('PokemonDetailScreen', { id: item.id })}
+                            type={item.types.map((type: any) => type.name).join('').toLowerCase()}
+                            onPress={() => navigateTo('PokemonsDetailsScreen', { item: item })}
                         />
                     )}
                     keyExtractor={item => item.id}
@@ -54,8 +37,8 @@ const PokemonsHomeScreen = () => {
                     ListFooterComponent={ListFooterComponent}
                 />
             )}
-            {isError && <Text>Error</Text>}
         </View>
+      </>
     );
 };
 

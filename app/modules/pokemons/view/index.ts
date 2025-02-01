@@ -1,7 +1,7 @@
 import PokemonsHomeScreen from "./PokemonsHomeScreen";
-import PokemonsDetailsScree from "./PokemonsDetailsScree";
+import PokemonsDetailsScreen from "./PokemonsDetailsScreen";
 
 export {
     PokemonsHomeScreen,
-    PokemonsDetailsScree
+    PokemonsDetailsScreen
 }

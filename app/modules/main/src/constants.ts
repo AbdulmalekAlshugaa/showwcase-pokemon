@@ -23,6 +23,9 @@ export const SIZES = {
     S_8: 16,
     S_9: 18,
     S_10: 20,
+    S_11: 22,
+    S_12: 24,
+
 
     screenWidth: width < height ? width : height,
     screenHeight: width < height ? height : width,

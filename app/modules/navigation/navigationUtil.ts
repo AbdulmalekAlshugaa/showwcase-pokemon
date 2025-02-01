@@ -95,6 +95,7 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
  * @param {unknown} params - The params to pass to the route.
  */
 export function navigateTo(name: unknown, params?: unknown) {
+  console.log('navigateTo', name);
   if (navigationRef.isReady()) {
     navigationRef.navigate(name as never, params as never);
   }

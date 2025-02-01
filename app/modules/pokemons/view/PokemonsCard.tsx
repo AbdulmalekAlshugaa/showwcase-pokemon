@@ -12,6 +12,7 @@ interface PokemonsCardProps {
 }
 
 const PokemonsCard = ({ name, image, type, onPress }: PokemonsCardProps) => {
+    console.log('PokemonsCardProps',  type);
     return (
         <Card
             style={[
