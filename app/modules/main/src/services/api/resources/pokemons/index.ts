@@ -7,11 +7,10 @@ export class PokemonApi extends ResourceApi {
         super({ endpoint: 'pokemons' });
     }
 
-    async pokemons(offset:number, limit: number) {
-        const response = await this.api.apisauce.get<BasicResponse<PokemonApiResult>>('/pokemon', {
-            offset,
-            limit
-        });
+    async pokemons(offset: number, limit: number) {
+        const response = await this.api.apisauce.get<BasicResponse<PokemonApiResult>>(
+            `/pokemon?offset=${offset}&limit=${limit}`,
+        );
         return this.api.transformResponse(response);
     }
 

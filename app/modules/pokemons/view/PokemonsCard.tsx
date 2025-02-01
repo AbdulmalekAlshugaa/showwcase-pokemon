@@ -7,24 +7,24 @@ import { PokemonApi } from '../../main/src/services/api/resources/pokemons';
 interface PokemonsCardProps {
     name: string;
     image: string;
-    type: keyof typeof POKEMON_TYPE_COLORS;
+    types: keyof typeof POKEMON_TYPE_COLORS;
     onPress: () => void;
 }
 
-const PokemonsCard = ({ name, image, type, onPress }: PokemonsCardProps) => {
+const PokemonsCard = ({ name, image, types, onPress }: PokemonsCardProps) => {
     return (
         <Card
             style={[
                 styles.card,
                 {
-                    backgroundColor: POKEMON_TYPE_COLORS[type],
+                    backgroundColor: POKEMON_TYPE_COLORS[types],
                 },
             ]}
             onPress={onPress}
         >
             <Card.Cover
                 style={{
-                    backgroundColor: POKEMON_TYPE_COLORS[type],
+                    backgroundColor: POKEMON_TYPE_COLORS[types],
                 }}
                 source={{ uri: image }}
             />

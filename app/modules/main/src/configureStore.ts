@@ -1,8 +1,10 @@
-import {  configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GlobalReducer from './GlobalReducer';
+import { pokemonApi } from '../../pokemons/hooks/useGetPokemonsQuery';
+import { pokemonDetailsApi, pokemonSpeciesApi } from '../../pokemons/hooks';
 
 const persistConfig = {
     key: 'root',
@@ -14,13 +16,13 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, GlobalReducer);
 
 export const store = configureStore({
-    reducer: persistedReducer, // ✅ Correct usage
+    reducer: persistedReducer,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }),
+        }).concat(pokemonApi.middleware, pokemonDetailsApi.middleware, pokemonSpeciesApi.middleware), // ✅ Add RTK Query middleware
 });
 
 export const persistor = persistStore(store);

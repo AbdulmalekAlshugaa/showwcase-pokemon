@@ -56,9 +56,9 @@ const castPokemonDataInEspecialFormate = ( pokemonData: any, pokemonSpecieData: 
     });
 
     return {
-        id: pokemonData.id,
-        name: pokemonSpecieData.names[pokemonNameIndex].name,
-        description: pokemonSpecieData.flavor_text_entries[pokemonFlavorTextIndex].flavor_text,
+        id: pokemonData.id || 0,
+        name: pokemonSpecieData?.names[pokemonNameIndex]?.name || '',
+        description: pokemonSpecieData?.flavor_text_entries[pokemonFlavorTextIndex]?.flavor_text,
         image: getPokemonImage(String(pokemonData.id)),
         genera: pokemonSpecieData.genera[pokemonGeneraIndex].genus,
         pokedex_number: pokemonData.id.toString().padStart(3, '0'),

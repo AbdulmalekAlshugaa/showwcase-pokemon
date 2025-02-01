@@ -2,14 +2,22 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PokemonState {
   loading: boolean;
-  data: any[];
+  data: {
+    next: string | null;
+    previous: string | null;
+    results: any[];
+  }
   error: string | null;
   success: boolean;
 }
 
 const initialState: PokemonState = {
   loading: false,
-  data: [],
+  data: {
+    next: null,
+    previous: null,
+    results: [],
+  },
   error: null,
   success: false,
 };
@@ -22,7 +30,7 @@ const pokemonStateSlice = createSlice({
     getPokemonRequest(state) {
       state.loading = true;
     },
-    getPokemonSuccess(state, action: PayloadAction<{ pokemons: any[] }>) {
+    getPokemonSuccess(state, action: PayloadAction<{ pokemons: any }>) {
       state.loading = false;
       state.data = action.payload.pokemons;
       state.success = true;
