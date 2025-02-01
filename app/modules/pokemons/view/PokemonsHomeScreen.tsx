@@ -4,10 +4,10 @@ import { navigateTo } from '../../navigation/navigationUtil';
 import PokemonsCard from './PokemonsCard';
 import AppLoading from '@/app/components/AppLoading';
 import { useGetPaginatedPokemons } from '../hooks';
-import { useNavigation } from '@react-navigation/native';
 
 const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
+
 
     const ListFooterComponent = useMemo(
         () => (isLoading ? <AppLoading color={'primary'} style={{ marginVertical: 8 }} /> : null),
