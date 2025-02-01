@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useMemo } from 'react';
 import { navigateTo } from '../../navigation/navigationUtil';
 import PokemonsCard from './PokemonsCard';
@@ -7,7 +7,6 @@ import { useGetPaginatedPokemons } from '../hooks';
 import { useNavigation } from '@react-navigation/native';
 
 const PokemonsHomeScreen = () => {
-   const navigation =  useNavigation();
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
 
     const ListFooterComponent = useMemo(
@@ -16,6 +15,8 @@ const PokemonsHomeScreen = () => {
     );
 
     return (
+      <>
+      <StatusBar translucent backgroundColor={"transparent"} />
         <View>
             {isLoading && <Text>Loading...</Text>}
             {isSuccess && (
@@ -37,6 +38,7 @@ const PokemonsHomeScreen = () => {
                 />
             )}
         </View>
+      </>
     );
 };
 
