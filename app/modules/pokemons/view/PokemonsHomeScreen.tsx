@@ -26,7 +26,7 @@ const PokemonsHomeScreen = () => {
                         <PokemonsCard
                             name={item.name}
                             image={item.image}
-                            types={item.types}
+                            type={item.types.map((type: any) => type.name).join('').toLowerCase()}
                             onPress={() => navigateTo('PokemonsDetailsScreen', { item: item })}
                         />
                     )}

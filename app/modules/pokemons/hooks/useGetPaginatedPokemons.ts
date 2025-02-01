@@ -3,7 +3,6 @@ import { useGetPokemonsQuery } from './useGetPokemonsQuery';
 import getPokemonIdByUrl from '../../main/src/utils/getPokemonIdByUrl';
 import castPokemonDataInEspecialFormate from '../../main/src/utils/getPokemonData';
 import { pokeapi } from '../../main/src/services/api';
-import useDebounce from '../../main/hooks/useDebounce';
 
 const useGetPaginatedPokemons = () => {
     const [offset, setOffset] = useState(0);

@@ -1,16 +1,16 @@
 import React, { useRef } from 'react';
 import { Animated, Image, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native';
 
-import AppLoading from './AppLoading';
-import { COLORS } from '../modules/main/src/constants';
+import { COLORS, POKEMON_TYPE_COLORS } from '../modules/main/src/constants';
 
 interface PokemonDetailProps {
     isLoading: boolean;
     image?: string;
     children: React.ReactNode;
+    backgroundColor?: typeof POKEMON_TYPE_COLORS;
 }
 
-const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ isLoading, image, children }) => {
+const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ isLoading, image, children,backgroundColor }) => {
     const headerAnimation = useRef(new Animated.Value(0)).current;
 
     const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -18,7 +18,7 @@ const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ isLoading, image, 
     };
 
     return (
-        <View style={[styles.flex, { backgroundColor: COLORS.gray }]}>
+        <View style={[styles.flex, { backgroundColor: backgroundColor ? POKEMON_TYPE_COLORS[backgroundColor as unknown as keyof typeof POKEMON_TYPE_COLORS] : POKEMON_TYPE_COLORS['normal'] }]}>
             <ScrollView scrollEventThrottle={16} onScroll={onScroll} contentContainerStyle={styles.container}>
                 <View style={styles.spacer} />
                 <Image source={require('../../assets/images/wm.png')} style={styles.watermark} />
