@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PokemonState {
   loading: boolean;
-  pokemonInfo: any;
-  pokemonSpecies: any;
+  pokemonInfo: pokemon.PokemonResponseById | null;
+  pokemonSpecies: pokemon.PokemonSpecie | null;
  
   error: string | null;
   success: boolean;

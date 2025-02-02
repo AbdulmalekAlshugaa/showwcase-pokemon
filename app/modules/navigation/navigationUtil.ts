@@ -2,6 +2,7 @@ import {  useEffect, useRef } from "react";
 import { BackHandler, Platform } from "react-native";
 import {
   NavigationState,
+  ParamListBase,
   PartialState,
   createNavigationContainerRef,
 } from "@react-navigation/native";
@@ -16,8 +17,8 @@ import {
  * The types on this reference will only let you reference top level navigators. If you have
  * nested navigators, you'll need to use the `useNavigation` with the stack navigator's ParamList type.
  */
-export const navigationRef = createNavigationContainerRef();
 
+export const navigationRef = createNavigationContainerRef<ParamListBase>();
 /**
  * Gets the current screen from any navigation state.
  * @param {NavigationState | PartialState<NavigationState>} state - The navigation state to traverse.
@@ -94,10 +95,12 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
  * @param {unknown} name - The name of the route to navigate to.
  * @param {unknown} params - The params to pass to the route.
  */
-export function navigateTo(name: unknown, params?: unknown) {
-  console.log('navigateTo', name);
+export function navigateTo<RouteName extends keyof ParamListBase>(
+  name: RouteName,
+  params?: ParamListBase[RouteName]
+) {
   if (navigationRef.isReady()) {
-    navigationRef.navigate(name as never, params as never);
+    navigationRef.navigate(name, params);
   }
 }
 

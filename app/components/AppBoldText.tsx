@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper';
 import { VariantProp } from 'react-native-paper/lib/typescript/components/Typography/types';
 
 interface AppBoldTextProps {
-    title: string;
+    title: string | number | undefined;
     style: StyleProp<TextStyle>; 
     variant: VariantProp<string>;
     numberOfLines: number;

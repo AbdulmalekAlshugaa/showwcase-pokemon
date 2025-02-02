@@ -1,7 +1,7 @@
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 import getPokemonImage from './getPokemonImageById';
 
-const getReadyPokemonData = ( pokemonData: any, pokemonSpecieData: any) => {
+const getReadyPokemonData = (pokemonData: pokemon.PokemonResponseById, pokemonSpecieData: pokemon.PokemonSpecie) => {
     const pokemonNameIndex = pokemonSpecieData.names.findIndex(name => name.language.name === 'en');
 
     const pokemonFlavorTextIndex = pokemonSpecieData.flavor_text_entries.findIndex(
@@ -57,7 +57,7 @@ const getReadyPokemonData = ( pokemonData: any, pokemonSpecieData: any) => {
 
     return {
         id: pokemonData.id || 0,
-        name: pokemonSpecieData?.names[pokemonNameIndex]?.name || '',
+        name: pokemonSpecieData?.names[pokemonNameIndex]?.name || 'no name',
         description: pokemonSpecieData?.flavor_text_entries[pokemonFlavorTextIndex]?.flavor_text,
         image: getPokemonImage(String(pokemonData.id)),
         genera: pokemonSpecieData.genera[pokemonGeneraIndex].genus,

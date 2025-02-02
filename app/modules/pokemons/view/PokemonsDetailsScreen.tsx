@@ -1,8 +1,7 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import {  StatusBar, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
 import PokemonDetailWrapper from '@/app/components/PokemonDetailWrapper';
-import { Badge } from 'react-native-paper';
-import { COLORS, POKEMON_TYPE_COLORS, SIZES, TYPOGRAPHY } from '../../main/src/constants';
+import {  POKEMON_TYPE_COLORS, SIZES } from '../../main/src/constants';
 import AppBoldText from '@/app/components/AppBoldText';
 import AppBadge from '@/app/components/AppBadge';
 import AppSection from '@/app/components/AppSection';
@@ -11,7 +10,6 @@ import AppStatistic from '@/app/components/AppStatistic';
 import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
 import { pokemoneDetailsThunk } from '../src/pokemoneDetailsThunk';
 import {
-    pokemonDetailsErrorSelector,
     pokemonDetailsLoadingSelector,
     pokemonDetailsSelector,
     pokemonDetailsSuccessSelector,
@@ -64,7 +62,7 @@ const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
                             <AppStatistic
                                 colorTheme={POKEMON_TYPE_COLORS['fire']}
                                 title={'HP'}
-                                value={item?.stats.find(stat => stat.name.toLowerCase() === 'hp')?.base_stat}
+                                value={item?.stats.find(stat => stat.name.toLowerCase() === 'hp')?.base_stat || 0}
                             />
                             <AppStatistic
                                 colorTheme={POKEMON_TYPE_COLORS['flying']}
