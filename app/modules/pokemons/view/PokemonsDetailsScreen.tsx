@@ -10,8 +10,12 @@ import AppSection from '@/app/components/AppSection';
 import AppInformation from '@/app/components/AppInformation';
 import AppStatistic from '@/app/components/AppStatistic';
 
-const PokemonsDetailsScreen = ({ route }) => {
-    const { item } = route.params;
+interface PokemonsDetailsScreenProps {
+    route: any;
+}
+
+const PokemonsDetailsScreen = (route:PokemonsDetailsScreenProps) => {
+    const { item } = route.route.params;
     const [isLoading, setIsLoading] = useState(true);
 
     return (

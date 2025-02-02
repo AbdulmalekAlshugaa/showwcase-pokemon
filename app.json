@@ -46,6 +46,13 @@
       "eas": {
         "projectId": "23afc863-2c6c-448d-9834-af5b32f7db5e"
       }
+    },
+    "owner": "alexsaleh",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/23afc863-2c6c-448d-9834-af5b32f7db5e"
     }
   }
 }
