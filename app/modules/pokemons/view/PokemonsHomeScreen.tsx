@@ -26,7 +26,7 @@ const PokemonsHomeScreen = () => {
                                 name={item.name}
                                 image={item.image}
                                 type={'normal'}
-                                onPress={() => navigateTo('PokemonsDetailsScreen', { item: item })}
+                                onPress={() => navigateTo('PokemonsDetailsScreen', { id: item.id })}
                             />
                         )}
                         keyExtractor={item => item.id + item.name}

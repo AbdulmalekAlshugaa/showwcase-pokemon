@@ -4,13 +4,12 @@ import { Animated, Image, NativeScrollEvent, NativeSyntheticEvent, ScrollView, S
 import { COLORS, POKEMON_TYPE_COLORS } from '../modules/main/src/constants';
 
 interface PokemonDetailProps {
-    isLoading: boolean;
     image?: string;
     children: React.ReactNode;
     backgroundColor?: typeof POKEMON_TYPE_COLORS;
 }
 
-const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ isLoading, image, children,backgroundColor }) => {
+const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({image, children,backgroundColor }) => {
     const headerAnimation = useRef(new Animated.Value(0)).current;
 
     const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {

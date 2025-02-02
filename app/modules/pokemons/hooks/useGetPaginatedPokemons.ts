@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { useGetPokemonsQuery } from "./useGetPokemonsQuery";
+import getPokemonImage from "../../main/src/utils/getPokemonImageById";
 
 
 export const useGetPaginatedPokemons = () => {
@@ -14,12 +15,10 @@ export const useGetPaginatedPokemons = () => {
               return {
                   ...pokemon,
                   id,
-                  image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+                  image: getPokemonImage(id),
               };
           })
         : [];
-
-       
 
     // Load more function
     const loadMorePokemons = useCallback(() => {
