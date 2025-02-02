@@ -19,6 +19,7 @@ export const pokemonApi = createApi({
         forceRefetch({ currentArg, previousArg }) {
           return currentArg?.offset !== previousArg?.offset;
         },
+        
       }),
     }),
   });

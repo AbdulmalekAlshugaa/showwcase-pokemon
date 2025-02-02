@@ -1,78 +1,32 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useGetPokemonsQuery } from './useGetPokemonsQuery';
-import getPokemonIdByUrl from '../../main/src/utils/getPokemonIdByUrl';
-import castPokemonDataInEspecialFormate from '../../main/src/utils/getPokemonData';
-import { pokeapi } from '../../main/src/services/api';
+import { useState, useCallback } from "react";
+import { useGetPokemonsQuery } from "./useGetPokemonsQuery";
 
-const useGetPaginatedPokemons = () => {
+
+export const useGetPaginatedPokemons = () => {
     const [offset, setOffset] = useState(0);
     const limit = 10;
-    const [allPokemons, setAllPokemons] = useState<any[]>([]);
-    const [isFullLoading, setIsFullLoading] = useState<boolean>(false); // New state for full loading tracking
+    const { data, isFetching, isSuccess, isLoading } = useGetPokemonsQuery({ offset, limit });
 
-    const { data, isFetching, isSuccess } = useGetPokemonsQuery({ offset, limit });
+    // Modify data to include images
+    const modifiedResults = isSuccess
+        ? data?.results.map((pokemon: any) => {
+              const id = pokemon.url.match(/\/(\d+)\/$/)[1];
+              return {
+                  ...pokemon,
+                  id,
+                  image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+              };
+          })
+        : [];
 
-    // Fetch the Pokemon details when data changes
-    useEffect(() => {
-        if (isSuccess && data?.results) {
-            const fetchPokemonDetails = async () => {
-                setIsFullLoading(true); // Set loading to true when the data fetching starts
-                const pokemonsList = [];
+       
 
-                for (let pokemon of data.results) {
-                    try {
-                        const id = getPokemonIdByUrl(pokemon.url);
-                        const [pokemonData, pokemonSpeciesData] = await Promise.all([
-                            pokeapi.pokemonById(id),
-                            pokeapi.pokemonSpecies(id)
-                        ]);
-
-                        const pokemonDetails = pokemonData.kind === 'ok' ? pokemonData.data : null;
-                        const pokemonSpeciesDetails = pokemonSpeciesData.kind === 'ok' ? pokemonSpeciesData.data : null;
-
-                        const formattedPokemon = castPokemonDataInEspecialFormate(pokemonDetails, pokemonSpeciesDetails);
-                        if (formattedPokemon) {
-                            pokemonsList.push(formattedPokemon);
-                        }
-                    } catch (error) {
-                        console.error(`Failed to fetch Pokémon ${pokemon.url}`, error);
-                    }
-                }
-
-                // Update state with the new list and avoid duplicates
-                setAllPokemons(prevAllPokemons => {
-                    const uniquePokemons = [
-                        ...prevAllPokemons, // Spread previous state
-                        ...pokemonsList.filter(Boolean), // Add new data
-                    ];
-
-                    return uniquePokemons.filter(
-                        (pokemon, index, self) => index === self.findIndex(p => p.id === pokemon.id)
-                    );
-                });
-
-                setIsFullLoading(false); // Set loading to false after fetching is complete
-            };
-
-            fetchPokemonDetails();
-        }
-    }, [data, isSuccess]);
-
-    // Debounced function to load more when user scrolls
+    // Load more function
     const loadMorePokemons = useCallback(() => {
-        if (!isFetching && data?.next) {
-            setOffset(prev => prev + limit); // Increment offset for pagination
+        if (!isLoading) {
+            setOffset((prevOffset) => prevOffset + limit);
         }
-    }, [isFullLoading, data?.next]);
+    }, [isLoading]);
 
-
-    return {
-        allPokemons,
-        loadMorePokemons, // Pass this function to FlatList
-        isFetching,
-        isSuccess,
-        isLoading:isFullLoading
-    };
+    return { allPokemons: modifiedResults, isSuccess, isFetching, isLoading, loadMorePokemons };
 };
-
-export { useGetPaginatedPokemons };

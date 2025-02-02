@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
-import React, { useMemo } from 'react';
+import React, { memo } from 'react';
 import { Card } from 'react-native-paper';
 import { COLORS, POKEMON_TYPE_COLORS } from '../../main/src/constants';
-import { PokemonApi } from '../../main/src/services/api/resources/pokemons';
 
 interface PokemonsCardProps {
     name: string;
@@ -12,7 +11,6 @@ interface PokemonsCardProps {
 }
 
 const PokemonsCard = ({ name, image, type, onPress }: PokemonsCardProps) => {
-    console.log('PokemonsCardProps',  type);
     return (
         <Card
             style={[
@@ -41,4 +39,4 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.black,
     },
 });
-export default PokemonsCard;
+export default memo(PokemonsCard);
