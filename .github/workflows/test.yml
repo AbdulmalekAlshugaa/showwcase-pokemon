@@ -16,7 +16,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [18] # Stick to Node.js 18 for stability
+                node-version: [18, 20] # Add more versions here
 
         steps:
             - name: Checkout repository
