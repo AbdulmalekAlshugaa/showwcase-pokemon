@@ -29,7 +29,7 @@ jobs:
                   cache: 'npm'
 
             - name: Install dependencies
-              run: npm ci # Use `npm ci` for clean install (faster and avoids lockfile issues)
+              run: yarn install # Use `npm ci` for clean install (faster and avoids lockfile issues)
 
             - name: Run tests with coverage
               run: npm test -- --coverage --maxWorkers=2 # Run tests and generate coverage report
