@@ -8,7 +8,8 @@ import AppSection from '@/app/components/AppSection';
 import AppInformation from '@/app/components/AppInformation';
 import AppStatistic from '@/app/components/AppStatistic';
 import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
-import { pokemoneDetailsThunk } from '../src/pokemoneDetailsThunk';
+import { pokemoneDetailsThunk, } from '../src/pokemoneDetailsThunk';
+import { cleanUp } from '../src/pokemonsDetailsSlice'
 import {
     pokemonDetailsLoadingSelector,
     pokemonDetailsSelector,
@@ -19,18 +20,24 @@ interface PokemonsDetailsScreenProps {
     route: {
         params: {
             id: string;
+            callApi: boolean;
         };
     };
 }
 
 const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
-    const { id } = route.route.params;
+    const { id , callApi} = route.route.params;
+   
     const dispatch = useAppDispatch();
     const item = useAppSelector(pokemonDetailsSelector);
     const isSuccess = useAppSelector(pokemonDetailsSuccessSelector);
     const isLoading = useAppSelector(pokemonDetailsLoadingSelector);
     useEffect(() => {
-        dispatch(pokemoneDetailsThunk(id));
+        const value = id;
+        callApi ? dispatch(pokemoneDetailsThunk(value)) : null;
+        return () => {
+            dispatch(cleanUp());
+        };
     }, [dispatch]);
 
     return (

@@ -4,21 +4,23 @@ import { Button } from 'react-native-paper';
 import { COLORS } from '../modules/main/src/constants';
 
 interface AppButtonProps extends PressableProps {
-    style: ViewStyle;
+    style?: ViewStyle;
     oPress: () => void;
     loading: boolean;
     label: string;
     icon: string;
+    mode: 'contained' | 'outlined' | 'text' 
 }
 
 const AppButton = (props: AppButtonProps) => {
+    const mode = props.mode || 'contained';
     return (
         <TouchableOpacity onPress={props.oPress} style={props.style}>
             <Button
                 icon={props.icon}
                 style={styles.button}
                 loading={props.loading}
-                mode="contained"
+                mode={mode}
                 onPress={props.oPress}
             >
                 {props.label}
@@ -31,6 +33,6 @@ export default AppButton;
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.primary,
     },
 });

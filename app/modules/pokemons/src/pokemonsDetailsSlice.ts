@@ -24,6 +24,8 @@ const pokemonStateSlice = createSlice({
     // Define your synchronous reducers here
     getPokemonDetailsRequest(state) {
       state.loading = true;
+      state.error = null;
+      state.success = false;
     },
     getPokemonDetailsSuccess(state, action: PayloadAction<{ pokemonInfo: any, pokemonSpecies: any }>) {
       state.loading = false;
@@ -35,6 +37,14 @@ const pokemonStateSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
+    // Define your asynchronous reducers here
+
+    cleanUp(state) {
+      state.loading = false;
+      state.error = null;
+      state.success = false
+    },
   },
 });
 
@@ -43,6 +53,7 @@ export const {
   getPokemonDetailsRequest,
   getPokemonDetailsSuccess,
   getPokemonDetailsFailure,
+  cleanUp,
 } = pokemonStateSlice.actions;
 
 export default pokemonStateSlice.reducer;

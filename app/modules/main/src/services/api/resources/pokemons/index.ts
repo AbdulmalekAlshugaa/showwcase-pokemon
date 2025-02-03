@@ -14,8 +14,8 @@ export class PokemonApi extends ResourceApi {
         return this.api.transformResponse(response);
     }
 
-    async pokemonById(id: string) {
-        const response = await this.api.apisauce.get<BasicResponse<pokemon.PokemonResponseById>>(`/pokemon/${id}`);
+    async pokemonByIdName(value: string) {
+        const response = await this.api.apisauce.get<BasicResponse<pokemon.PokemonResponseById>>(`/pokemon/${value}`);
         return this.api.transformResponse(response);
     }
 

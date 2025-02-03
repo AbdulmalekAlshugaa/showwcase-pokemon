@@ -10,6 +10,10 @@ export const COLORS = {
     white: '#FFFFFF',
     gray: '#757575',
     lightGrey: '#c0c0c0',
+    red: '#FF0000',
+    green: '#00FF00',
+    warning: '#FFA500',
+    
 };
 export const SIZES = {
     // global sizes
