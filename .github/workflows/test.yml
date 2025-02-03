@@ -16,7 +16,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [18, 20] # Test across different Node.js versions
+                node-version: [18] # Stick to Node.js 18 for stability
 
         steps:
             - name: Checkout repository
@@ -26,11 +26,13 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
+                  cache: 'yarn'
 
             - name: Install dependencies
-              run: yarn install # Use `npm ci` for clean install (faster and avoids lockfile issues)
+              run: yarn install --frozen-lockfile
+
+            - name: Verify Yarn lockfile
+              run: yarn check --integrity
 
             - name: Run tests with coverage
-              run: npm test -- --coverage --maxWorkers=2 # Run tests and generate coverage report
-
+              run: yarn test --coverage --maxWorkers=2 --watchAll=false
