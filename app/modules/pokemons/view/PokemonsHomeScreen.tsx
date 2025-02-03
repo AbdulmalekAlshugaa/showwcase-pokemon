@@ -4,7 +4,6 @@ import { navigateTo } from '../../navigation/navigationUtil';
 import PokemonsCard from './PokemonsCard';
 import AppLoading from '@/app/components/AppLoading';
 import { useGetPaginatedPokemons } from '../hooks';
-import FloatingButton from '@/app/components/FloatingButton';
 import PokemonSearchModal from './PokemonSearchModal';
 import { PokemonRoute } from '../src/pokemonsRoute';
 import FBGroup from '@/app/components/FBGroup';
@@ -13,7 +12,7 @@ const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
     const [open, setOpen] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
-    
+
     const ListFooterComponent = useMemo(
         () => (isLoading ? <AppLoading color={'primary'} size={'large'} style={{ marginVertical: 8 }} /> : null),
         [isLoading],
@@ -25,7 +24,6 @@ const PokemonsHomeScreen = () => {
             <PokemonSearchModal
                 visible={isModalVisible}
                 hideModal={() => setModalVisible(false)}
-                eventRequest={() => {}}
             />
 
             <View>

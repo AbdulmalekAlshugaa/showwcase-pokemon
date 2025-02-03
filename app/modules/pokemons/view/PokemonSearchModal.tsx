@@ -15,7 +15,6 @@ import AppBodyText from '@/app/components/AppBodyText';
 interface PokemonSearchModalProps {
     visible: boolean;
     hideModal: () => void;
-    eventRequest?: any;
 }
 
 const PokemonSearchModal = (props: PokemonSearchModalProps) => {
