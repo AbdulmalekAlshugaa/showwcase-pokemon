@@ -7,10 +7,13 @@ import { useGetPaginatedPokemons } from '../hooks';
 import FloatingButton from '@/app/components/FloatingButton';
 import PokemonSearchModal from './PokemonSearchModal';
 import { PokemonRoute } from '../src/pokemonsRoute';
+import FBGroup from '@/app/components/FBGroup';
 
 const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
+    const [open, setOpen] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
+    
     const ListFooterComponent = useMemo(
         () => (isLoading ? <AppLoading color={'primary'} size={'large'} style={{ marginVertical: 8 }} /> : null),
         [isLoading],
@@ -24,6 +27,7 @@ const PokemonsHomeScreen = () => {
                 hideModal={() => setModalVisible(false)}
                 eventRequest={() => {}}
             />
+
             <View>
                 {isLoading && <Text>Loading...</Text>}
 
@@ -35,7 +39,7 @@ const PokemonsHomeScreen = () => {
                                 name={item.name}
                                 image={item.image}
                                 type={'normal'}
-                                onPress={() => navigateTo(PokemonRoute.PokemonDetails, { id: item.id , callApi: true})}
+                                onPress={() => navigateTo(PokemonRoute.PokemonDetails, { id: item.id, callApi: true })}
                             />
                         )}
                         keyExtractor={item => item.id + item.name}
@@ -45,8 +49,20 @@ const PokemonsHomeScreen = () => {
                         ListFooterComponent={ListFooterComponent}
                     />
                 )}
-                <FloatingButton icon={'tag-search'} visible={true} label="Search Pokemon" 
-                onPress={() => setModalVisible(true)}
+
+                <FBGroup
+                    visible={true}
+                    open={open}
+                    setOpen={setOpen}
+                    onActionPress={(action: string) => {
+                        if (action === 'search') {
+                            setModalVisible(true);
+                        } else if (action === 'logout') {
+                            console.log('Logout');
+                        } else {
+                            console.log('FAB Pressed sss');
+                        }
+                    }}
                 />
             </View>
         </>

@@ -14,16 +14,17 @@ if (__DEV__) {
     // Load Reactotron in development only.
     // Note that you must be using metro's `inlineRequires` for this to work.
     // If you turn it off in metro.config.js, you'll have to manually import it.
-    require("./app/devtools/ReactotronConfig");
-  }
+    require('./app/devtools/ReactotronConfig');
+}
 
 import { SafeAreaView, Text } from 'react-native';
 import React from 'react';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { store ,persistor} from './app/modules/main/src/configureStore';
+import { store, persistor } from './app/modules/main/src/configureStore';
 import RootNavigator from './app/modules/navigation/RootNavigator';
+import { PaperProvider } from 'react-native-paper';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -34,10 +35,12 @@ export default function App() {
         // setTimeout(hideSplashScreen, 500);
     };
     return (
-        <Provider store={store}>
-            <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
-                <RootNavigator />
-            </PersistGate>
-        </Provider>
+        <PaperProvider>
+            <Provider store={store}>
+                <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
+                    <RootNavigator />
+                </PersistGate>
+            </Provider>
+        </PaperProvider>
     );
 }
