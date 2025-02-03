@@ -1,21 +1,16 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
 import { FAB, Portal } from 'react-native-paper';
+import { FABTYPES } from '../modules/pokemons/src/pokemonsConstants';
 
 const FABGroupProps = {
     visible: true,
     open: false,
     setOpen: (open: boolean) => {},
-    onActionPress: (action: string) => void {},
+    onActionPress: (action: FABTYPES) => void {},
 };
 
-const FBGroup = ({
-    visible,
-    open,
-    setOpen,
-    onActionPress,
-}: typeof FABGroupProps) => {
+const FBGroup = ({ visible, open, setOpen, onActionPress }: typeof FABGroupProps) => {
     return (
         <Portal>
             <FAB.Group
@@ -28,7 +23,6 @@ const FBGroup = ({
                 ]}
                 enableLongPressWhenStackOpened
                 onStateChange={({ open }: { open: boolean }) => setOpen(open)}
-                onPress={() => console.log('FAB Pressed')}
                 visible={visible}
             />
         </Portal>
@@ -37,29 +31,5 @@ const FBGroup = ({
 
 FBGroup.title = 'Floating Action Button';
 
-const styles = StyleSheet.create({
-    container: {
-        padding: 4,
-    },
-    row: {
-        marginBottom: 8,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    column: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 8,
-    },
-    fab: {
-        margin: 8,
-    },
-    fabVariant: {
-        flex: 1,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-});
 
 export default FBGroup;

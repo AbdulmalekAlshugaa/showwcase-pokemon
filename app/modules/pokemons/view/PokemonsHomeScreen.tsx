@@ -7,6 +7,7 @@ import { useGetPaginatedPokemons } from '../hooks';
 import PokemonSearchModal from './PokemonSearchModal';
 import { PokemonRoute } from '../src/pokemonsRoute';
 import FBGroup from '@/app/components/FBGroup';
+import {  FAB_TYPE, FABTYPES } from '../src/pokemonsConstants';
 
 const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
@@ -52,10 +53,10 @@ const PokemonsHomeScreen = () => {
                     visible={true}
                     open={open}
                     setOpen={setOpen}
-                    onActionPress={(action: string) => {
-                        if (action === 'search') {
+                    onActionPress={(action: FABTYPES) => {
+                        if (action === FAB_TYPE.SEARCH) {
                             setModalVisible(true);
-                        } else if (action === 'logout') {
+                        } else if (action === FAB_TYPE.LOGOUT) {
                             console.log('Logout');
                         } else {
                             console.log('FAB Pressed sss');
