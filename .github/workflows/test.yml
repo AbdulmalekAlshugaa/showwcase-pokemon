@@ -1,0 +1,36 @@
+name: Run Tests
+
+on:
+    push:
+        branches:
+            - master
+            - develop
+    pull_request:
+        branches:
+            - master
+            - develop
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [16, 18, 20] # Test across different Node.js versions
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci # Use `npm ci` for clean install (faster and avoids lockfile issues)
+
+            - name: Run tests with coverage
+              run: npm test -- --coverage --maxWorkers=2 # Run tests and generate coverage report
+
