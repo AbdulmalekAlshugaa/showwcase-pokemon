@@ -15,6 +15,7 @@ import {
     pokemonDetailsSelector,
     pokemonDetailsSuccessSelector,
 } from '../src/pokemoneDetailsSelectors';
+import { Icon } from 'react-native-paper';
 
 interface PokemonsDetailsScreenProps {
     route: {
@@ -46,7 +47,9 @@ const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
 
             {isSuccess && !isLoading ? (
                 <View style={styles.container}>
+        
                     <PokemonDetailWrapper image={item?.image}>
+       
                         <AppBoldText numberOfLines={1} variant="displaySmall" style={styles.title} title={item?.name} />
                         <View style={styles.type}>
                             {item?.types.map((item: any, uri: number) => (

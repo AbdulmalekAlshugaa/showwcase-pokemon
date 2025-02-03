@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppModal from '../../../components/AppModal';
 import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
 import { COLORS, SIZES } from '../../main/src/constants';
@@ -28,13 +28,18 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
     const handleSearch = () => {
         setLoading(true);
         const value = searchText;
-        dispatch(pokemoneDetailsThunk(value));
-        if (isSuccess) {
-            props.hideModal();
-            navigateTo(PokemonRoute.PokemonDetails, { id: '1', callApi: false });
-        }
-        setLoading(false);
+        dispatch(pokemoneDetailsThunk(value)).finally(() => setLoading(false)); 
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigateTo(PokemonRoute.PokemonDetails, { id: searchText, callApi: true });
+            props.hideModal();
+        }
+        if (!isSuccess || isSuccess) {
+            setLoading(false);
+        }
+    }, [isSuccess ]);
 
     const renderSearchBar = () => (
         <View style={styles.searchContainer}>
@@ -64,10 +69,7 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
             {isError ? (
                 <AppBodyText
                     title="No Pokemon Found"
-
-                    
                     variant="bodySmall"
-                    
                     style={{ textAlign: 'center', color: COLORS.red, marginVertical: SIZES.S_5 }}
                     numberOfLines={1}
                 >

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Animated, Image, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native';
 
 import { COLORS, POKEMON_TYPE_COLORS } from '../modules/main/src/constants';
+import { Icon } from 'react-native-paper';
 
 interface PokemonDetailProps {
     image?: string;
@@ -9,7 +10,7 @@ interface PokemonDetailProps {
     backgroundColor?: typeof POKEMON_TYPE_COLORS;
 }
 
-const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({image, children,backgroundColor }) => {
+const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ image, children, backgroundColor }) => {
     const headerAnimation = useRef(new Animated.Value(0)).current;
 
     const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -17,8 +18,18 @@ const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({image, children,bac
     };
 
     return (
-        <View style={[styles.flex, { backgroundColor: backgroundColor ? POKEMON_TYPE_COLORS[backgroundColor as unknown as keyof typeof POKEMON_TYPE_COLORS] : POKEMON_TYPE_COLORS['normal'] }]}>
+        <View
+            style={[
+                styles.flex,
+                {
+                    backgroundColor: backgroundColor
+                        ? POKEMON_TYPE_COLORS[backgroundColor as unknown as keyof typeof POKEMON_TYPE_COLORS]
+                        : POKEMON_TYPE_COLORS['normal'],
+                },
+            ]}
+        >
             <ScrollView scrollEventThrottle={16} onScroll={onScroll} contentContainerStyle={styles.container}>
+                <Icon color={COLORS.white} source="heart" size={30} />
                 <View style={styles.spacer} />
                 <Image source={require('../../assets/images/wm.png')} style={styles.watermark} />
                 {image && <Image source={{ uri: image }} style={styles.img} />}
