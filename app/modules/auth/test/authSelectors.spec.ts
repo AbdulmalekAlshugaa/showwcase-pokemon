@@ -1,4 +1,3 @@
-
 import { RootState } from '../../main/src/configureStore';
 import * as authSelectors from '../src/authSelectors';
 
@@ -17,14 +16,5 @@ describe('Test :: test user auth', () => {
         expect(result).not.toBeNull();
         expect(result).toBeTruthy();
         expect(result).toBe(true);
-
-       
-
     });
-
-   
-
-    
-    
-
 });
