@@ -25,26 +25,16 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Tech stack
+1. Redux-toolkit 
+3  Redux-Thunk
+4. Interactive UI
+5. react-native-paper
+6. React Navigation
+7. Jest library
+8. Github actions for automation 
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### implementation 
+| Login page | Home Page |Details |
+| ----------- | ----------- | ----------- | 
+|![Simulator Screen Shot - iPhone 13 - 2023-10-06 at 22 35 56](https://github.com/AbdulmalekAlshugaa/E-Commerce-App/assets/33663456/dd3eae8e-6bca-44e5-9364-15017a232640)|![Simulator Screen Shot - iPhone 13 - 2023-10-05 at 13 32 31](https://github.com/AbdulmalekAlshugaa/E-Commerce-App/assets/33663456/0de091ab-d45c-4e58-8dc0-7cf3d0e964d1)| ![Simulator Screen Shot - iPhone 13 - 2023-10-05 at 13 32 35](https://github.com/AbdulmalekAlshugaa/E-Commerce-App/assets/33663456/a54e3bd8-2a69-4eb5-a6c7-b087b46bc7d0)
