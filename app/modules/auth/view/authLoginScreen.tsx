@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { useAppDispatch } from '../../main/src/configureStore';
@@ -21,40 +21,47 @@ const AuthLoginScreen = () => {
     };
 
     return (
-        <View
-            style={{
-                justifyContent: 'center',
-                marginTop: 20,
-            }}
-        >
+        <View style={styles.container}>
             <TextInput
-                style={{
-                    marginBottom: 20,
-                }}
+                style={styles.textInput}
                 label="Email"
                 onChangeText={text => {
                     setUsername(text);
                 }}
             />
             <TextInput
-                style={{
-                    marginBottom: 20,
-                }}
+                style={styles.textInput}
                 label="Password"
                 onChangeText={text => {
                     setPassword(text);
                 }}
             />
 
-            <Button
-            loading={isLoading}
-             mode="contained" onPress={handleLogin}>
+            <Button loading={isLoading} mode="contained" onPress={handleLogin}>
                 Login
             </Button>
+            {error && <Text style={styles.textError}>{'something went wrong . ' as any}</Text>}
         </View>
     );
 };
 
 export default AuthLoginScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+
+    textInput: {
+        marginBottom: 20,
+    },
+    buttonContainer: {
+        marginTop: 20,
+    },
+    textError: {
+        marginTop: 10,
+        color: 'red',
+        textAlign: 'center',
+    },
+});
