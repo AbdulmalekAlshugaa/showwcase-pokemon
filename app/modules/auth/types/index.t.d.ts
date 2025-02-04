@@ -4,8 +4,8 @@ declare namespace auth {
         InitialState: {
             isAuthenticated: boolean;
             user: {
-                id: string | null;
-                token: string | null;
+                username: string | null;
+                accessToken: string | null;
             };
         };
         

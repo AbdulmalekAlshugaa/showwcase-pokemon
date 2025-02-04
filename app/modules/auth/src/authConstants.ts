@@ -5,8 +5,8 @@ export const AUTH_INITIAL_STATE: auth.State = {
     InitialState: {
         isAuthenticated: false,
         user: {
-            id: null,
-            token: null,
+            username: null,
+            accessToken: null,
         },
     },
 };

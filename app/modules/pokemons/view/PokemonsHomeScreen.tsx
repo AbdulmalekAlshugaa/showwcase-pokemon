@@ -7,25 +7,33 @@ import { useGetPaginatedPokemons } from '../hooks';
 import PokemonSearchModal from './PokemonSearchModal';
 import { PokemonRoute } from '../src/pokemonsRoute';
 import FBGroup from '@/app/components/FBGroup';
-import {  FAB_TYPE, FABTYPES } from '../src/pokemonsConstants';
+import { FAB_TYPE, FABTYPES } from '../src/pokemonsConstants';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../auth/src/authReducer';
+import { persistStore } from 'redux-persist';
+import { store } from '../../main/src/configureStore';
+const persistor = persistStore(store);
 
 const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
+
     const [open, setOpen] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
-
+    const dispatch = useDispatch();
     const ListFooterComponent = useMemo(
         () => (isLoading ? <AppLoading color={'primary'} size={'large'} style={{ marginVertical: 8 }} /> : null),
         [isLoading],
     );
 
+    const handleLogout = () => {
+        persistor.purge();
+        dispatch(logout());
+    };
+
     return (
         <>
             <StatusBar translucent backgroundColor={'transparent'} />
-            <PokemonSearchModal
-                visible={isModalVisible}
-                hideModal={() => setModalVisible(false)}
-            />
+            <PokemonSearchModal visible={isModalVisible} hideModal={() => setModalVisible(false)} />
 
             <View>
                 {isLoading && <Text>Loading...</Text>}
@@ -57,7 +65,7 @@ const PokemonsHomeScreen = () => {
                         if (action === FAB_TYPE.SEARCH) {
                             setModalVisible(true);
                         } else if (action === FAB_TYPE.LOGOUT) {
-                            console.log('Logout');
+                            handleLogout();
                         } else {
                             console.log('FAB Pressed sss');
                         }
