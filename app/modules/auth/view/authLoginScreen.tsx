@@ -46,7 +46,9 @@ const AuthLoginScreen = () => {
                 }}
             />
 
-            <Button mode="contained" onPress={handleLogin}>
+            <Button
+            loading={isLoading}
+             mode="contained" onPress={handleLogin}>
                 Login
             </Button>
         </View>
