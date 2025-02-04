@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { useAppDispatch } from '../../main/src/configureStore';
