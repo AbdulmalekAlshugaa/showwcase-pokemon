@@ -21,9 +21,7 @@ const AuthLoginScreen = () => {
     };
 
     return (
-        <View
-            style={styles.container}
-        >
+        <View style={styles.container}>
             <TextInput
                 style={styles.textInput}
                 label="Email"
@@ -39,12 +37,10 @@ const AuthLoginScreen = () => {
                 }}
             />
 
-            <Button
-            loading={isLoading}
-             mode="contained" onPress={handleLogin}>
+            <Button loading={isLoading} mode="contained" onPress={handleLogin}>
                 Login
             </Button>
-            {error && <Text style={styles.textError}>{"something went wrong . " as any}</Text>}
+            {error && <Text style={styles.textError}>{'something went wrong . ' as any}</Text>}
         </View>
     );
 };
@@ -52,10 +48,9 @@ const AuthLoginScreen = () => {
 export default AuthLoginScreen;
 
 const styles = StyleSheet.create({
-
     container: {
         justifyContent: 'center',
-                marginTop: 20,
+        marginTop: 20,
     },
 
     textInput: {
