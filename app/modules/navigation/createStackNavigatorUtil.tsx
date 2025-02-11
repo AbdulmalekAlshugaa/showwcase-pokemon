@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
 import { COLORS } from '../main/src/constants';
 import { navigationRef } from './navigationUtil';
@@ -19,7 +19,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
     };
 
     return function createPokeMonStackNavigator(
-        routeConfig: Record<string, any>,
+        routeConfig: Record<string, React.ComponentType<unknown>>,
         navigatorConfig: NavigatorConfig = defaultNavigatorConfig,
     ) {
         const Stack = createNativeStackNavigator();

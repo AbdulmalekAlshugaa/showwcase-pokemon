@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import * as Localization from 'expo-localization';
 import { I18nManager } from 'react-native';
 import i18n from 'i18next';
@@ -58,12 +59,10 @@ export const initI18n = async () => {
  */
 // via: https://stackoverflow.com/a/65333050
 type RecursiveKeyOf<TObj extends object> = {
-  [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, true>;
+    [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, true>;
 }[keyof TObj & (string | number)];
 
 export type TxKeyPath = RecursiveKeyOf<Translations>;
-
-
 
 type RecursiveKeyOfInner<TObj extends object> = {
     [TKey in keyof TObj & (string | number)]: RecursiveKeyOfHandleValue<TObj[TKey], `${TKey}`, false>;

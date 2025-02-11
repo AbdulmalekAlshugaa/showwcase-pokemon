@@ -13,7 +13,6 @@ export const COLORS = {
     red: '#FF0000',
     green: '#00FF00',
     warning: '#FFA500',
-    
 };
 export const SIZES = {
     // global sizes
@@ -29,7 +28,6 @@ export const SIZES = {
     S_10: 20,
     S_11: 22,
     S_12: 24,
-
 
     screenWidth: width < height ? width : height,
     screenHeight: width < height ? height : width,
