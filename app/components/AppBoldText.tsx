@@ -5,7 +5,7 @@ import { VariantProp } from 'react-native-paper/lib/typescript/components/Typogr
 
 interface AppBoldTextProps {
     title: string | number | undefined;
-    style: StyleProp<TextStyle>; 
+    style: StyleProp<TextStyle>;
     variant: VariantProp<string>;
     numberOfLines: number;
 }

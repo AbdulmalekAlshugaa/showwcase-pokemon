@@ -13,7 +13,7 @@ interface AppSearchProps {
 
 const AppSearch = (props: AppSearchProps) => {
     const [inputString, setInputString] = useState('');
-    let inputRef: any = null;
+    let inputRef: unknown = null;
 
     const _onChangeText = (text: string) => {
         setInputString(text);
@@ -33,7 +33,7 @@ const AppSearch = (props: AppSearchProps) => {
             onPressIn={() => inputRef.focus()}
             value={inputString}
             style={[styles.container, props.style]}
-            inputStyle={{ fontSize: 14, height: 20, color: COLORS.black }}
+            inputStyle={styles.searchBar}
             inputMode="text"
             onChangeText={_onChangeText}
             allowFontScaling={true}
@@ -50,9 +50,14 @@ const AppSearch = (props: AppSearchProps) => {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: COLORS.white,
         borderRadius: SIZES.S_1,
         elevation: SIZES.S_2,
-        backgroundColor: COLORS.white,
+    },
+    searchBar: {
+        color: COLORS.black,
+        fontSize: 14,
+        height: 20,
     },
 });
 

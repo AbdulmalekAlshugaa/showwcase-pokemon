@@ -1,5 +1,3 @@
-
-
 export const AUTH_INITIAL_STATE: auth.State = {
     AuthActionName: 'auth',
     InitialState: {
@@ -10,4 +8,3 @@ export const AUTH_INITIAL_STATE: auth.State = {
         },
     },
 };
-

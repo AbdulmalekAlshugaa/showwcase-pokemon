@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-raw-text */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
@@ -52,16 +54,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 20,
     },
-
+    // eslint-disable-next-line react-native/no-color-literals
+    textError: {
+        color: 'red',
+        marginTop: 10,
+        textAlign: 'center',
+    },
     textInput: {
         marginBottom: 20,
-    },
-    buttonContainer: {
-        marginTop: 20,
-    },
-    textError: {
-        marginTop: 10,
-        color: 'red',
-        textAlign: 'center',
     },
 });

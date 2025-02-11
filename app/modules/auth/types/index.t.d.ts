@@ -8,6 +8,5 @@ declare namespace auth {
                 accessToken: string | null;
             };
         };
-        
     }
 }

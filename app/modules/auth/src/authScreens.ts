@@ -1,6 +1,6 @@
-import { createDefaultStackNavigator } from "../../navigation/createStackNavigatorUtil";
-import AuthLoginScreen from "../view/authLoginScreen";
-import { AuthRoutes } from "./authRoutes";
+import { createDefaultStackNavigator } from '../../navigation/createStackNavigatorUtil';
+import AuthLoginScreen from '../view/authLoginScreen';
+import { AuthRoutes } from './authRoutes';
 
 export const AuthFlowStack = createDefaultStackNavigator(
     {
@@ -8,5 +8,5 @@ export const AuthFlowStack = createDefaultStackNavigator(
     },
     {
         initialRouteName: AuthRoutes.AuthLogin,
-    }
+    },
 );

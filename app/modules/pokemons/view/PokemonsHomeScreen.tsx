@@ -21,7 +21,7 @@ const PokemonsHomeScreen = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const dispatch = useDispatch();
     const ListFooterComponent = useMemo(
-        () => (isLoading ? <AppLoading color={'primary'} size={'large'} style={{ marginVertical: 8 }} /> : null),
+        () => (isLoading ? <AppLoading color={'primary'} size={'large'} style={styles.loading} /> : null),
         [isLoading],
     );
 
@@ -78,4 +78,8 @@ const PokemonsHomeScreen = () => {
 
 export default PokemonsHomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    loading: {
+        marginVertical: 8,
+    },
+});

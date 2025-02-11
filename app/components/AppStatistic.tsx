@@ -65,13 +65,11 @@ const AppStatistic: FC<Props> = ({ colorTheme, title, value }) => {
     );
 };
 
-
-
 const styles = StyleSheet.create({
     stat: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleContainer: {
         width: 100,

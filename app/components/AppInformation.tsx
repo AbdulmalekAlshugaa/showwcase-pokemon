@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-raw-text */
 import { StyleSheet, View } from 'react-native';
 import React, { FC } from 'react';
 
@@ -18,14 +19,7 @@ const AppInformation: FC<Props> = ({ title, value }) => {
                     :
                 </AppBodyText>
             </View>
-            <AppBodyText
-                title={value}
-                variant="bodySmall"
-                numberOfLines={1}
-                style={{
-                    flex: 1,
-                }}
-            >
+            <AppBodyText title={value} variant="bodySmall" numberOfLines={1} style={styles.bodyText}>
                 {value}
             </AppBodyText>
         </View>
@@ -35,20 +29,23 @@ const AppInformation: FC<Props> = ({ title, value }) => {
 export default AppInformation;
 
 const styles = StyleSheet.create({
-    head: {
-        width: 100,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginRight: 10,
-        marginBottom: 5,
+    bodyText: {
+        flex: 1,
     },
     container: {
-        flexDirection: 'row',
         alignItems: 'flex-start',
+        flexDirection: 'row',
     },
     dot: {
         textAlign: 'right',
         // paddingRight: 10
+    },
+    head: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 5,
+        marginRight: 10,
+        width: 100,
     },
 });

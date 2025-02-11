@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 import { FAB, Portal } from 'react-native-paper';
 import { FABTYPES } from '../modules/pokemons/src/pokemonsConstants';
 
@@ -7,6 +6,7 @@ const FABGroupProps = {
     visible: true,
     open: false,
     setOpen: (open: boolean) => {},
+    // eslint-disable-next-line no-void
     onActionPress: (action: FABTYPES) => void {},
 };
 
@@ -30,6 +30,5 @@ const FBGroup = ({ visible, open, setOpen, onActionPress }: typeof FABGroupProps
 };
 
 FBGroup.title = 'Floating Action Button';
-
 
 export default FBGroup;

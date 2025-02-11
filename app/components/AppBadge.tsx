@@ -19,9 +19,9 @@ const AppBadge: FC<Props> = ({ color, title, style }) => {
 
 const styles = StyleSheet.create({
     badge: {
-        paddingVertical: 5,
-        paddingHorizontal: 10,
         borderRadius: 50,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
     },
 });
 

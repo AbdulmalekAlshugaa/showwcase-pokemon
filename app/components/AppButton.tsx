@@ -9,20 +9,14 @@ interface AppButtonProps extends PressableProps {
     loading: boolean;
     label: string;
     icon: string;
-    mode: 'contained' | 'outlined' | 'text' 
+    mode: 'contained' | 'outlined' | 'text';
 }
 
 const AppButton = (props: AppButtonProps) => {
     const mode = props.mode || 'contained';
     return (
         <TouchableOpacity onPress={props.oPress} style={props.style}>
-            <Button
-                icon={props.icon}
-                style={styles.button}
-                loading={props.loading}
-                mode={mode}
-                onPress={props.oPress}
-            >
+            <Button icon={props.icon} style={styles.button} loading={props.loading} mode={mode} onPress={props.oPress}>
                 {props.label}
             </Button>
         </TouchableOpacity>

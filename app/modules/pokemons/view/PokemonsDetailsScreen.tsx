@@ -1,21 +1,20 @@
-import {  StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import PokemonDetailWrapper from '@/app/components/PokemonDetailWrapper';
-import {  POKEMON_TYPE_COLORS, SIZES } from '../../main/src/constants';
+import { POKEMON_TYPE_COLORS, SIZES } from '../../main/src/constants';
 import AppBoldText from '@/app/components/AppBoldText';
 import AppBadge from '@/app/components/AppBadge';
 import AppSection from '@/app/components/AppSection';
 import AppInformation from '@/app/components/AppInformation';
 import AppStatistic from '@/app/components/AppStatistic';
 import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
-import { pokemoneDetailsThunk, } from '../src/pokemoneDetailsThunk';
-import { cleanUp } from '../src/pokemonsDetailsSlice'
+import { pokemoneDetailsThunk } from '../src/pokemoneDetailsThunk';
+import { cleanUp } from '../src/pokemonsDetailsSlice';
 import {
     pokemonDetailsLoadingSelector,
     pokemonDetailsSelector,
     pokemonDetailsSuccessSelector,
 } from '../src/pokemoneDetailsSelectors';
-import { Icon } from 'react-native-paper';
 
 interface PokemonsDetailsScreenProps {
     route: {
@@ -27,15 +26,16 @@ interface PokemonsDetailsScreenProps {
 }
 
 const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
-    const { id , callApi} = route.route.params;
-   
+    const { id, callApi } = route.route.params;
     const dispatch = useAppDispatch();
     const item = useAppSelector(pokemonDetailsSelector);
     const isSuccess = useAppSelector(pokemonDetailsSuccessSelector);
     const isLoading = useAppSelector(pokemonDetailsLoadingSelector);
     useEffect(() => {
         const value = id;
-        callApi ? dispatch(pokemoneDetailsThunk(value)) : null;
+        if (callApi) {
+            dispatch(pokemoneDetailsThunk(value));
+        }
         return () => {
             dispatch(cleanUp());
         };
@@ -47,13 +47,11 @@ const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
 
             {isSuccess && !isLoading ? (
                 <View style={styles.container}>
-        
                     <PokemonDetailWrapper image={item?.image}>
-       
                         <AppBoldText numberOfLines={1} variant="displaySmall" style={styles.title} title={item?.name} />
                         <View style={styles.type}>
-                            {item?.types.map((item: any, uri: number) => (
-                                <AppBadge color={POKEMON_TYPE_COLORS['bug']} title={item.name} key={uri} />
+                            {item?.types.map((item: { name: string }, uri: number) => (
+                                <AppBadge color={POKEMON_TYPE_COLORS.bug} title={item.name} key={uri} />
                             ))}
                         </View>
                         <AppSection title="Information" style={styles.section}>
@@ -70,32 +68,32 @@ const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
                         </AppSection>
                         <AppSection title="Statistic Basic" style={styles.section}>
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['fire']}
+                                colorTheme={POKEMON_TYPE_COLORS.fire}
                                 title={'HP'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'hp')?.base_stat || 0}
                             />
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['flying']}
+                                colorTheme={POKEMON_TYPE_COLORS.flying}
                                 title={'Attack'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'attack')?.base_stat || 0}
                             />
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['water']}
+                                colorTheme={POKEMON_TYPE_COLORS.water}
                                 title={'Defense'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'defense')?.base_stat || 0}
                             />
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['electric']}
+                                colorTheme={POKEMON_TYPE_COLORS.electric}
                                 title={'Speed'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'speed')?.base_stat || 0}
                             />
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['grass']}
+                                colorTheme={POKEMON_TYPE_COLORS.grass}
                                 title={'SP Attack'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'sp. atk')?.base_stat || 0}
                             />
                             <AppStatistic
-                                colorTheme={POKEMON_TYPE_COLORS['poison']}
+                                colorTheme={POKEMON_TYPE_COLORS.poison}
                                 title={'SP Defense'}
                                 value={item?.stats.find(stat => stat.name.toLowerCase() === 'sp. Def')?.base_stat || 0}
                             />
@@ -113,24 +111,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    type: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginBottom: SIZES.S_12,
-    },
-    gap: {
-        marginLeft: 10,
-    },
-    title: {
-        marginBottom: 10,
+    information: {
+        marginTop: 16,
     },
     paragraph: {
         lineHeight: 23,
     },
-    information: {
-        marginTop: 16,
-    },
     section: {
         paddingHorizontal: 15,
+    },
+    title: {
+        marginBottom: 10,
+    },
+    type: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: SIZES.S_12,
     },
 });

@@ -11,23 +11,16 @@ interface FloatingButtonProps extends Omit<FABProps, 'icon'> {
     onPress: () => void;
 }
 
-const FloatingButton = ({  style, icon, label, onPress }: FloatingButtonProps) => {
-    return (
-        <FAB
-            label={label}
-            icon={icon}
-            style={[styles.fabStyle, style]}
-            onPress={onPress}
-        />
-    );
+const FloatingButton = ({ style, icon, label, onPress }: FloatingButtonProps) => {
+    return <FAB label={label} icon={icon} style={[styles.fabStyle, style]} onPress={onPress} />;
 };
 
 const styles = StyleSheet.create({
     fabStyle: {
-        position: 'absolute',
-        margin: 16,
-        right: 0,
         bottom: 0,
+        margin: 16,
+        position: 'absolute',
+        right: 0,
     },
 });
 

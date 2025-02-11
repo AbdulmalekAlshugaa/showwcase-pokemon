@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import React, { useRef } from 'react';
 import { Animated, Image, NativeScrollEvent, NativeSyntheticEvent, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -24,7 +25,7 @@ const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ image, children, b
                 {
                     backgroundColor: backgroundColor
                         ? POKEMON_TYPE_COLORS[backgroundColor as unknown as keyof typeof POKEMON_TYPE_COLORS]
-                        : POKEMON_TYPE_COLORS['normal'],
+                        : POKEMON_TYPE_COLORS.normal,
                 },
             ]}
         >
@@ -42,41 +43,38 @@ const PokemonDetailWrapper: React.FC<PokemonDetailProps> = ({ image, children, b
 };
 
 const styles = StyleSheet.create({
-    flex: {
-        flex: 1,
+    body: {
+        marginTop: 80,
     },
     container: {
-        paddingHorizontal: 5,
         paddingBottom: 5,
+        paddingHorizontal: 5,
+    },
+    content: {
+        backgroundColor: COLORS.white,
+        borderRadius: 10,
+        flex: 1,
+        zIndex: 9,
+    },
+    flex: {
+        flex: 1,
     },
     img: {
         height: 230,
         resizeMode: 'contain',
         width: 230,
     },
-    content: {
-        flex: 1,
-        backgroundColor: COLORS.white,
-        zIndex: 9,
-        borderRadius: 10,
-    },
-    watermark: {
-        height: 270,
-        width: 270,
-        resizeMode: 'contain',
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        zIndex: 999,
-    },
-    body: {
-        marginTop: 80,
-    },
     spacer: {
         height: 125,
     },
-    loading: {
-        marginTop: 100,
+    watermark: {
+        height: 270,
+        position: 'absolute',
+        resizeMode: 'contain',
+        right: 0,
+        top: 0,
+        width: 270,
+        zIndex: 999,
     },
 });
 

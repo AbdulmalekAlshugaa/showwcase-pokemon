@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
 import { COLORS, SIZES } from '../../main/src/constants';
 import AppSearch from '@/app/components/AppSearch';
 import AppButton from '@/app/components/AppButton';
-import { Button } from 'react-native-paper';
 import { pokemoneDetailsThunk } from '../src/pokemoneDetailsThunk';
 import { pokemonDetailsSuccessSelector, pokemonDetailsErrorSelector } from '../src/pokemoneDetailsSelectors';
 import { navigateTo } from '../../navigation/navigationUtil';
@@ -27,7 +26,7 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
     const handleSearch = () => {
         setLoading(true);
         const value = searchText;
-        dispatch(pokemoneDetailsThunk(value)).finally(() => setLoading(false)); 
+        dispatch(pokemoneDetailsThunk(value)).finally(() => setLoading(false));
     };
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
         if (!isSuccess || isSuccess) {
             setLoading(false);
         }
-    }, [isSuccess ]);
+    }, [isSuccess]);
 
     const renderSearchBar = () => (
         <View style={styles.searchContainer}>
@@ -66,12 +65,7 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
             <AppButton loading={loading} icon="tag-search" mode="contained" label="Search" oPress={handleSearch} />
 
             {isError ? (
-                <AppBodyText
-                    title="No Pokemon Found"
-                    variant="bodySmall"
-                    style={{ textAlign: 'center', color: COLORS.red, marginVertical: SIZES.S_5 }}
-                    numberOfLines={1}
-                >
+                <AppBodyText title="No Pokemon Found" variant="bodySmall" style={styles.text} numberOfLines={1}>
                     {isError}
                 </AppBodyText>
             ) : null}
@@ -80,34 +74,31 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
 };
 
 const styles = StyleSheet.create({
+    appSearch: {
+        backgroundColor: COLORS.lightGrey,
+        borderRadius: SIZES.S_8,
+        flex: 1,
+        marginHorizontal: SIZES.S_5,
+        marginVertical: SIZES.S_5,
+    },
     containerStyle: {
         backgroundColor: COLORS.black,
     },
     contentStyle: {
-        width: SIZES.width,
         backgroundColor: COLORS.white,
         flex: 1,
+        width: SIZES.width,
     },
+
     searchContainer: {
-        flexDirection: 'row',
         backgroundColor: COLORS.white,
+        flexDirection: 'row',
         paddingVertical: 10,
     },
-    headerContainer: {
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
-        // alignItems: 'center',
-        // padding: 10,
-    },
-    appSearch: {
+    text: {
+        color: COLORS.red,
         marginVertical: SIZES.S_5,
-        marginHorizontal: SIZES.S_5,
-        borderRadius: SIZES.S_8,
-        backgroundColor: COLORS.lightGrey,
-        flex: 1,
-    },
-    button: {
-        backgroundColor: COLORS.primary,
+        textAlign: 'center',
     },
 });
 
