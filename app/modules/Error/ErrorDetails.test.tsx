@@ -11,12 +11,12 @@ describe('ErrorDetails', () => {
 
     test('renders correctly', () => {
         const { getByTestId } = render(<ErrorDetails {...props} />);
-        expect(getByTestId('content-container')).toBeTruthy();
+        expect(getByTestId('test-error-messages')).toBeTruthy();
     });
 
     test('calls onReset when the reset button is pressed', () => {
         const { getByTestId } = render(<ErrorDetails {...props} />);
-        fireEvent.press(getByTestId('reset-button'));
+        fireEvent.press(getByTestId('button-text'));
         expect(props.onReset).toHaveBeenCalled();
     });
 

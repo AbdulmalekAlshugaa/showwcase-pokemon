@@ -25,6 +25,7 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './app/modules/main/src/configureStore';
 import RootNavigator from './app/modules/navigation/RootNavigator';
 import { PaperProvider } from 'react-native-paper';
+import { ErrorBoundary } from './app/modules/Error/ErrorBoundary';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -36,11 +37,13 @@ export default function App() {
     };
     return (
         <PaperProvider>
-            <Provider store={store}>
-                <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
-                    <RootNavigator />
-                </PersistGate>
-            </Provider>
+            <ErrorBoundary catchErrors="always">
+                <Provider store={store}>
+                    <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
+                        <RootNavigator />
+                    </PersistGate>
+                </Provider>
+            </ErrorBoundary>
         </PaperProvider>
     );
 }

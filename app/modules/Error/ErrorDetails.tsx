@@ -25,10 +25,17 @@ export function ErrorDetails(props: ErrorDetailsProps) {
                 style={$errorSection}
                 contentContainerStyle={$errorSectionContentContainer}
             >
-                <AppBodyText title={props.error.message} variant="bodySmall" numberOfLines={1} style={$errorContent}>
+                <AppBodyText
+                    testID="error-message"
+                    title={props.error.message}
+                    variant="bodySmall"
+                    numberOfLines={1}
+                    style={$errorContent}
+                >
                     {props.error.message}
                 </AppBodyText>
                 <AppBodyText
+                    testID="error-backtrace"
                     title={props.errorInfo.componentStack || ''}
                     variant="bodySmall"
                     numberOfLines={1}
@@ -38,10 +45,11 @@ export function ErrorDetails(props: ErrorDetailsProps) {
                 </AppBodyText>
             </ScrollView>
             <AppButton
+                testID="reset-button"
                 style={$resetButton}
                 loading={false}
                 mode="contained"
-                label="Search"
+                label="Reset"
                 oPress={props.onReset}
                 icon={''}
             />
