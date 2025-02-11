@@ -34,9 +34,9 @@ const PokemonsCard = ({ name, image, type, onPress }: PokemonsCardProps) => {
 
 const styles = StyleSheet.create({
     card: {
-        margin: 10,
-        flex: 1,
         backgroundColor: COLORS.black,
+        flex: 1,
+        margin: 10,
     },
 });
 export default memo(PokemonsCard);

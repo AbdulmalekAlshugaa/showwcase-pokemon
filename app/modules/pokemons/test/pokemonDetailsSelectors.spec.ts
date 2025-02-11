@@ -17,7 +17,6 @@ describe('Test :: Pokemon details', () => {
         expect(result).not.toBeNull();
         expect(result?.name).toBe('Ivysaur');
         expect(result?.abilites).toHaveLength(2);
-
     });
 
     test('should return loading state', () => {
@@ -48,40 +47,51 @@ describe('Test :: Pokemon details', () => {
     });
 
     test('should return null if no pokemon info', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, pokemonInfo: null } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, pokemonInfo: null },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if no pokemon species', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, pokemonSpecies: null } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, pokemonSpecies: null },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if no pokemon info and species', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, pokemonInfo: null, pokemonSpecies: null } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, pokemonInfo: null, pokemonSpecies: null },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if loading', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, loading: true } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, loading: true },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if loading species', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, loading: true } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, loading: true },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if loading info', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, loading: true } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, loading: true },
+        } as RootState);
         expect(result).toBeNull();
     });
 
     test('should return null if loading info and species', () => {
-        const result = pokemonSelectors.pokemonDetailsSelector({ pokemonDetails: { ...mockState.pokemonDetails, loading: true } } as RootState);
+        const result = pokemonSelectors.pokemonDetailsSelector({
+            pokemonDetails: { ...mockState.pokemonDetails, loading: true },
+        } as RootState);
         expect(result).toBeNull();
     });
-
-    
-
 });
