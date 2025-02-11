@@ -4,4 +4,3 @@ export * from './api';
 export * from './api.types';
 
 export const pokeapi = new PokemonApi();
-

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable import/first */
 /**
  * Welcome to the main entry point of the app. In this file, we'll
@@ -17,7 +18,6 @@ if (__DEV__) {
     require('./app/devtools/ReactotronConfig');
 }
 
-import { SafeAreaView, Text } from 'react-native';
 import React from 'react';
 
 import { PersistGate } from 'redux-persist/integration/react';
