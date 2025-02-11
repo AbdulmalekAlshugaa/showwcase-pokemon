@@ -9,7 +9,7 @@ import { useLoginUserMutation } from '../../main/src/services/api/resources/auth
 
 const AuthLoginScreen = () => {
     const dispatch = useAppDispatch();
-    const [loginUser, { isLoading, error, isSuccess }] = useLoginUserMutation();
+    const [loginUser, { isLoading, error }] = useLoginUserMutation();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async () => {
