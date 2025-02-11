@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import AppModal from '../../../components/AppModal';
 import { useAppDispatch, useAppSelector } from '../../main/src/configureStore';
@@ -61,14 +61,20 @@ const PokemonSearchModal = (props: PokemonSearchModalProps) => {
             visible={props.visible}
             hideModal={props.hideModal}
         >
-            {renderSearchBar()}
-            <AppButton loading={loading} icon="tag-search" mode="contained" label="Search" oPress={handleSearch} />
+            <KeyboardAvoidingView
+                behavior="padding"
+                style={styles.contentStyle}
+                keyboardVerticalOffset={SIZES.height / 4}
+            >
+                {renderSearchBar()}
+                <AppButton loading={loading} icon="tag-search" mode="contained" label="Search" oPress={handleSearch} />
 
-            {isError ? (
-                <AppBodyText title="No Pokemon Found" variant="bodySmall" style={styles.text} numberOfLines={1}>
-                    {isError}
-                </AppBodyText>
-            ) : null}
+                {isError ? (
+                    <AppBodyText title="No Pokemon Found" variant="bodySmall" style={styles.text} numberOfLines={1}>
+                        {isError}
+                    </AppBodyText>
+                ) : null}
+            </KeyboardAvoidingView>
         </AppModal>
     );
 };

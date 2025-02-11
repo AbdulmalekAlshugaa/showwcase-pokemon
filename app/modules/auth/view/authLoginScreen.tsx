@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-raw-text */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { Button, TextInput } from 'react-native-paper';
 import { useAppDispatch } from '../../main/src/configureStore';
@@ -24,25 +24,27 @@ const AuthLoginScreen = () => {
 
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.textInput}
-                label="Username"
-                onChangeText={text => {
-                    setUsername(text);
-                }}
-            />
-            <TextInput
-                style={styles.textInput}
-                label="Password"
-                onChangeText={text => {
-                    setPassword(text);
-                }}
-            />
+            <KeyboardAvoidingView behavior="padding">
+                <TextInput
+                    style={styles.textInput}
+                    label="Username"
+                    onChangeText={text => {
+                        setUsername(text);
+                    }}
+                />
+                <TextInput
+                    style={styles.textInput}
+                    label="Password"
+                    onChangeText={text => {
+                        setPassword(text);
+                    }}
+                />
 
-            <Button loading={isLoading} mode="contained" onPress={handleLogin}>
-                Login
-            </Button>
-            {error && <Text style={styles.textError}>{'something went wrong . ' as any}</Text>}
+                <Button loading={isLoading} mode="contained" onPress={handleLogin}>
+                    Login
+                </Button>
+                {error && <Text style={styles.textError}>{'something went wrong . ' as any}</Text>}
+            </KeyboardAvoidingView>
         </View>
     );
 };
