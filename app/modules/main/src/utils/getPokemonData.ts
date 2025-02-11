@@ -50,7 +50,9 @@ const getReadyPokemonData = (pokemonData: pokemon.PokemonResponseById, pokemonSp
 
     const eggGroupsFormatted = pokemonSpecieData.egg_groups.map(egg_group => {
         return {
+            // eslint-disable-next-line camelcase
             name: capitalizeFirstLetter(egg_group.name),
+            // eslint-disable-next-line camelcase
             url: egg_group.url,
         };
     });

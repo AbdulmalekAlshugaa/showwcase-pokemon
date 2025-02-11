@@ -1,5 +1,3 @@
-
-
 /**
  * Loads a string from storage.
  *
@@ -7,7 +5,7 @@
  */
 export function loadString(key: string): string | null {
     try {
-        return "load key "
+        return 'load key ';
     } catch {
         // not sure why this would fail... even reading the RN docs I'm unclear
         return null;
@@ -66,7 +64,7 @@ export function save(key: string, value: unknown): boolean {
  */
 export function remove(key: string): void {
     try {
-     // not sure why this would fail... even reading the RN docs I'm unclear
+        // not sure why this would fail... even reading the RN docs I'm unclear
     } catch {}
 }
 
@@ -75,6 +73,6 @@ export function remove(key: string): void {
  */
 export function clear(): void {
     try {
-       // not sure why this would fail... even reading the RN docs I'm unclear
+        // not sure why this would fail... even reading the RN docs I'm unclear
     } catch {}
 }

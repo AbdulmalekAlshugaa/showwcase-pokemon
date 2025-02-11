@@ -66,39 +66,39 @@ const AppStatistic: FC<Props> = ({ colorTheme, title, value }) => {
 };
 
 const styles = StyleSheet.create({
-    stat: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+    body: {
         alignItems: 'center',
-    },
-    titleContainer: {
-        width: 100,
-        borderRightWidth: 2,
-        paddingVertical: 8,
-        marginRight: SIZES.S_1,
-        borderRightColor: COLORS.lightGrey,
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-start',
     },
     slider: {
-        height: 10,
-        width: '100%',
         borderRadius: 150,
         borderRightColor: COLORS.lightGrey,
-    },
-    body: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        flex: 1,
-    },
-    value: {
-        width: 40,
+        height: 10,
+        width: '100%',
     },
     sliderValue: {
-        height: 10,
         borderRadius: 150,
+        height: 10,
+    },
+    stat: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
     },
     title: {
         paddingRight: 10,
+    },
+    titleContainer: {
+        borderRightColor: COLORS.lightGrey,
+        borderRightWidth: 2,
+        marginRight: SIZES.S_1,
+        paddingVertical: 8,
+        width: 100,
+    },
+    value: {
+        width: 40,
     },
 });
 
