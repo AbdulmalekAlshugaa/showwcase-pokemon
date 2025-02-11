@@ -26,7 +26,7 @@ const AuthLoginScreen = () => {
         <View style={styles.container}>
             <TextInput
                 style={styles.textInput}
-                label="Email"
+                label="Username"
                 onChangeText={text => {
                     setUsername(text);
                 }}

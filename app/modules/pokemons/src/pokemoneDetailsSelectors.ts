@@ -8,7 +8,9 @@ const pokemonMainSelector = (state: RootState) => state.pokemonDetails;
 export const pokemonDetailsLoadingSelector = createSelector(pokemonMainSelector, state => state.loading);
 export const pokemonDetailsErrorSelector = createSelector(pokemonMainSelector, state => state.error);
 export const pokemonDetailsSuccessSelector = createSelector(pokemonMainSelector, state => state.success);
-export const pokemonInfoSelector = createSelector(pokemonMainSelector, state => (state.loading ? null : state.pokemonInfo));
+export const pokemonInfoSelector = createSelector(pokemonMainSelector, state =>
+    state.loading ? null : state.pokemonInfo,
+);
 export const pokemonSpeciesSelector = createSelector(pokemonMainSelector, state =>
     state.loading ? null : state.pokemonSpecies,
 );
