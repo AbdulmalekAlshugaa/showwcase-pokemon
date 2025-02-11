@@ -49,23 +49,23 @@ export class Api {
     transformResponse<T = unknown>(response: ApiResponse<BasicResponse<T>>) {
         // the typical ways to die when calling an api
         if (!response.ok) {
-          const problem = getGeneralApiProblem(response);
-          if (problem) return problem;
+            const problem = getGeneralApiProblem(response);
+            if (problem) return problem;
         }
-    
+
         // transform the data into the format we are expecting
         try {
-          const rawData = response.data;
-          // This is where we transform the data into the shape we expect for our reducers
-          return { kind: 'ok', data: rawData };
+            const rawData = response.data;
+            // This is where we transform the data into the shape we expect for our reducers
+            return { kind: 'ok', data: rawData };
         } catch (e) {
-          if (__DEV__) {
-            const error = e as Error;
-            console.tron.error(`Bad data: ${error.message}\n${response.data}`, error.stack);
-          }
-          return { kind: 'bad-data' };
+            if (__DEV__) {
+                const error = e as Error;
+                console.tron.error(`Bad data: ${error.message}\n${response.data}`, error.stack);
+            }
+            return { kind: 'bad-data' };
         }
-      }
+    }
 }
 
 // Singleton instance of the API
