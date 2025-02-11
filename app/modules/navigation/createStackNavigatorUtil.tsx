@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform } from 'react-native';
@@ -19,7 +20,7 @@ export function createDefaultStackNavigatorFactory(defaultHeaderMode: NavigatorC
     };
 
     return function createPokeMonStackNavigator(
-        routeConfig: Record<string, React.ComponentType<unknown>>,
+        routeConfig: Record<string, React.ComponentType<any>>,
         navigatorConfig: NavigatorConfig = defaultNavigatorConfig,
     ) {
         const Stack = createNativeStackNavigator();

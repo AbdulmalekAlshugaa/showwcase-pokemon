@@ -1,7 +1,7 @@
-import { useState, useCallback } from "react";
-import { useGetPokemonsQuery } from "./useGetPokemonsQuery";
-import getPokemonImage from "../../main/src/utils/getPokemonImageById";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useCallback } from 'react';
+import { useGetPokemonsQuery } from './useGetPokemonsQuery';
+import getPokemonImage from '../../main/src/utils/getPokemonImageById';
 
 export const useGetPaginatedPokemons = () => {
     const [offset, setOffset] = useState(0);
@@ -23,7 +23,7 @@ export const useGetPaginatedPokemons = () => {
     // Load more function
     const loadMorePokemons = useCallback(() => {
         if (!isLoading) {
-            setOffset((prevOffset) => prevOffset + limit);
+            setOffset(prevOffset => prevOffset + limit);
         }
     }, [isLoading]);
 
