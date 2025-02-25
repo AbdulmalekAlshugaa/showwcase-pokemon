@@ -7747,7 +7747,7 @@ nested-error-stacks@~2.0.1:
 
 netly-rn-expo@AbdulmalekAlshugaa/netly-rn-expo:
   version "1.0.0"
-  resolved "https://codeload.github.com/AbdulmalekAlshugaa/netly-rn-expo/tar.gz/e8d6bf3e7a740740eef1ce6a22dbea0a36d95d0f"
+  resolved "https://codeload.github.com/AbdulmalekAlshugaa/netly-rn-expo/tar.gz/5ed6d9a204ffd7b8410ea3876655a1219cc5e670"
   dependencies:
     "@react-native-community/netinfo" "^11.4.1"
 

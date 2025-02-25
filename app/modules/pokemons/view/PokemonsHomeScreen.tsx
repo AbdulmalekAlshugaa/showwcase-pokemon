@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../auth/src/authReducer';
 import { persistStore } from 'redux-persist';
 import { store } from '../../main/src/configureStore';
-import { Placeholder, useNetworkStatus } from 'netly-rn-expo';
+import {  useNetworkStatus } from 'netly-rn-expo';
 const persistor = persistStore(store);
 
 const PokemonsHomeScreen = () => {
@@ -41,8 +41,6 @@ const PokemonsHomeScreen = () => {
 
             <View>
                 {isLoading && <Text>Loading...</Text>}
-                <Placeholder />
-
                 {isSuccess && (
                     <FlatList
                         data={allPokemons}
