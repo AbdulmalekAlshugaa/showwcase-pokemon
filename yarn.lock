@@ -7745,9 +7745,10 @@ nested-error-stacks@~2.0.1:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.0.1.tgz#d2cc9fc5235ddb371fc44d506234339c8e4b0a4b"
   integrity sha512-SrQrok4CATudVzBS7coSz26QRSmlK9TzzoFbeKfcPBUFPjcQM9Rqvr/DlJkOrwI/0KcgvMub1n1g5Jt9EgRn4A==
 
-netly-rn-expo@AbdulmalekAlshugaa/netly-rn-expo:
+netly-rn-expo@^1.1.0:
   version "1.1.0"
-  resolved "https://codeload.github.com/AbdulmalekAlshugaa/netly-rn-expo/tar.gz/5e355ea55483bab68f876ba904a4d51bbf13fa92"
+  resolved "https://registry.yarnpkg.com/netly-rn-expo/-/netly-rn-expo-1.1.0.tgz#527d2886e1143091553df733e562e8a1e221a560"
+  integrity sha512-lp7JVCTqxKW+/XczMaYkoL9TwJ7vxXpEMsDtR5k0/JTIu8vGmeS9Q7RSq5+bSTWYKhCjFsuVkOiVxV813imhPg==
   dependencies:
     "@react-native-community/netinfo" "^11.4.1"
 
