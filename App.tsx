@@ -26,6 +26,7 @@ import { store, persistor } from './app/modules/main/src/configureStore';
 import RootNavigator from './app/modules/navigation/RootNavigator';
 import { PaperProvider } from 'react-native-paper';
 import { ErrorBoundary } from './app/modules/Error/ErrorBoundary';
+import NetworkStatusToast from './app/modules/pokemons/view/NetworkStatusToast';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -38,6 +39,7 @@ export default function App() {
     return (
         <PaperProvider>
             <ErrorBoundary catchErrors="always">
+                <NetworkStatusToast />
                 <Provider store={store}>
                     <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
                         <RootNavigator />

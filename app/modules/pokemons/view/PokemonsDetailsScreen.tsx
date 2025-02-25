@@ -31,6 +31,7 @@ const PokemonsDetailsScreen = (route: PokemonsDetailsScreenProps) => {
     const item = useAppSelector(pokemonDetailsSelector);
     const isSuccess = useAppSelector(pokemonDetailsSuccessSelector);
     const isLoading = useAppSelector(pokemonDetailsLoadingSelector);
+
     useEffect(() => {
         const value = id;
         if (callApi) {

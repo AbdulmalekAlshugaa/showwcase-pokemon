@@ -12,10 +12,14 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../auth/src/authReducer';
 import { persistStore } from 'redux-persist';
 import { store } from '../../main/src/configureStore';
+import {  useNetworkStatus } from 'netly-rn-expo';
 const persistor = persistStore(store);
 
 const PokemonsHomeScreen = () => {
     const { allPokemons, isSuccess, isLoading, loadMorePokemons } = useGetPaginatedPokemons();
+
+    const hooks = useNetworkStatus();
+    console.log('hooks', hooks);
 
     const [open, setOpen] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -37,7 +41,6 @@ const PokemonsHomeScreen = () => {
 
             <View>
                 {isLoading && <Text>Loading...</Text>}
-
                 {isSuccess && (
                     <FlatList
                         data={allPokemons}

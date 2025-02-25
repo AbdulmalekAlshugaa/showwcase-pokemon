@@ -2,6 +2,8 @@ import { createDefaultStackNavigator } from '../../navigation/createStackNavigat
 import { PokemonsDetailsScreen, PokemonsHomeScreen } from '../view';
 import { PokemonRoute } from './pokemonsRoute';
 
+// admin, user, guest roles
+
 export const MainAppFlowStack = createDefaultStackNavigator(
     {
         [PokemonRoute.PokemonList]: PokemonsHomeScreen,
