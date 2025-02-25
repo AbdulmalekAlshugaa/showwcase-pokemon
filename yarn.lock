@@ -7746,8 +7746,8 @@ nested-error-stacks@~2.0.1:
   integrity sha512-SrQrok4CATudVzBS7coSz26QRSmlK9TzzoFbeKfcPBUFPjcQM9Rqvr/DlJkOrwI/0KcgvMub1n1g5Jt9EgRn4A==
 
 netly-rn-expo@AbdulmalekAlshugaa/netly-rn-expo:
-  version "1.0.0"
-  resolved "https://codeload.github.com/AbdulmalekAlshugaa/netly-rn-expo/tar.gz/5ed6d9a204ffd7b8410ea3876655a1219cc5e670"
+  version "1.1.0"
+  resolved "https://codeload.github.com/AbdulmalekAlshugaa/netly-rn-expo/tar.gz/5e355ea55483bab68f876ba904a4d51bbf13fa92"
   dependencies:
     "@react-native-community/netinfo" "^11.4.1"
 

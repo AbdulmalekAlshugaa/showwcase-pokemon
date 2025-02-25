@@ -26,7 +26,7 @@ import { store, persistor } from './app/modules/main/src/configureStore';
 import RootNavigator from './app/modules/navigation/RootNavigator';
 import { PaperProvider } from 'react-native-paper';
 import { ErrorBoundary } from './app/modules/Error/ErrorBoundary';
-import NetworkStatusToast from './app/modules/pokemons/view/NetworkStatusToast';
+import { NetworkStatusToast } from 'netly-rn-expo';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
