@@ -58,4 +58,4 @@ export interface BasicResponse<T = any> {
      */
     data: T;
     message?: string;
-  }
+}

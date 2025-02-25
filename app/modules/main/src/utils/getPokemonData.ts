@@ -48,6 +48,7 @@ const getReadyPokemonData = (pokemonData: pokemon.PokemonResponseById, pokemonSp
         };
     });
 
+    // eslint-disable-next-line camelcase
     const eggGroupsFormatted = pokemonSpecieData.egg_groups.map(egg_group => {
         return {
             // eslint-disable-next-line camelcase
