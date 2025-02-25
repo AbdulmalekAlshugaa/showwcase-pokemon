@@ -1,6 +1,7 @@
-import { useNetworkStatus } from 'netly-rn-expo';
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, InteractionManager, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
+import useNetworkStatus from './useNetworkStatus';
 
 // Configuration constants
 const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
@@ -19,6 +20,7 @@ export enum NetworkStatus {
 
 const NetworkStatusToast: React.FC = () => {
     const [networkState, prevNetworkState] = useNetworkStatus();
+    console.log('networkState', networkState);
 
     // Local state for controlling toast display
     const [showToast, setShowToast] = useState(false);
@@ -29,23 +31,30 @@ const NetworkStatusToast: React.FC = () => {
     const animatedValue = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        // Ignore null (undetermined) state
-
+        // When network goes down
         if (networkState === NetworkStatus.NO_CONNECTION && networkState !== prevNetworkState) {
             setToastMessage('No Internet Connection');
             setToastColor(COLOR_DISCONNECTED);
             show();
-        } else if (prevNetworkState === NetworkStatus.NO_CONNECTION && networkState === NetworkStatus.CONNECTED) {
+        }
+        // When network is restored
+        else if (prevNetworkState === NetworkStatus.NO_CONNECTION && networkState === NetworkStatus.CONNECTED) {
             setToastMessage('Internet Connection Restored');
             setToastColor(COLOR_CONNECTED);
             show();
-        } else if (prevNetworkState === NetworkStatus.CONNECTED && networkState === NetworkStatus.SLOW_CONNECTION) {
-            setToastMessage('slow internet connection');
+        }
+        // When network becomes slow
+        else if (prevNetworkState === NetworkStatus.CONNECTED && networkState === NetworkStatus.SLOW_CONNECTION) {
+            setToastMessage('Slow Internet Connection');
             setToastColor(COLOR_CONNECTED);
             show();
         }
-        const timeout = setTimeout(() => dismiss(), DISMISS_TIMEOUT);
-        return () => clearTimeout(timeout);
+
+        // Always schedule a dismiss when network is connected (or restored)
+        if (networkState === NetworkStatus.CONNECTED) {
+            const timeout = setTimeout(() => dismiss(), DISMISS_TIMEOUT);
+            return () => clearTimeout(timeout);
+        }
     }, [networkState]);
 
     const show = () => {
@@ -59,8 +68,8 @@ const NetworkStatusToast: React.FC = () => {
     };
 
     const dismiss = () => {
-        // Only dismiss if still connected (or if you want to dismiss regardless)
-        if (prevNetworkState === NetworkStatus.CONNECTED && networkState === NetworkStatus.CONNECTED) {
+        // Dismiss regardless of previous state if network is connected
+        if (networkState === NetworkStatus.CONNECTED) {
             InteractionManager.runAfterInteractions(() => {
                 Animated.timing(animatedValue, {
                     toValue: 0,
@@ -71,7 +80,6 @@ const NetworkStatusToast: React.FC = () => {
         }
     };
 
-    // Interpolate animated value for styling
     const toastAnimateStyle = {
         height: animatedValue.interpolate({
             inputRange: [0, 1],
@@ -91,7 +99,6 @@ const NetworkStatusToast: React.FC = () => {
         }),
     };
 
-    // If the toast is not visible, don't render anything
     if (!showToast && animatedValue.__getValue() === 0) {
         return null;
     }
