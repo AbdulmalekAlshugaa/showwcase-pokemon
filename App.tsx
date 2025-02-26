@@ -27,7 +27,6 @@ import RootNavigator from './app/modules/navigation/RootNavigator';
 import { PaperProvider } from 'react-native-paper';
 import { ErrorBoundary } from './app/modules/Error/ErrorBoundary';
 import { NetworkStatusToast } from 'netly-rn-expo';
-import { Platform } from 'react-native';
 
 export default function App() {
     const onBeforeLiftPersistGate = () => {
@@ -40,7 +39,7 @@ export default function App() {
     return (
         <PaperProvider>
             <ErrorBoundary catchErrors="always">
-                <NetworkStatusToast toastHeight={100} messageNoConnection="jdjjd" />
+                <NetworkStatusToast toastHeight={80} />
                 <Provider store={store}>
                     <PersistGate loading={null} onBeforeLift={onBeforeLiftPersistGate} persistor={persistor}>
                         <RootNavigator />
